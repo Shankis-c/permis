@@ -6,7 +6,7 @@ Thumbs.db
 .vscode/
 .idea/
 
-# Exports de Cap Permis (contiennent des données personnelles de suivi)
+# Exports de Cap Permis B (contiennent des données personnelles de suivi)
 cap-permis-sauvegarde-*.json
 cap-permis-suivi-*.csv
 cap-permis-fiche-lecon-*.txt
