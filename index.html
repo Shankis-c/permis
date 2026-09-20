@@ -1,0 +1,1408 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Cap Permis – suis tes réflexes de conduite jusqu'à l'examen</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --font-display:"Barlow Condensed","Arial Narrow","Helvetica Neue",Arial,sans-serif;
+  --font-body:"Figtree","Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;
+  --bg:#EDF0F3; --surface:#FFFFFF; --surface2:#F5F7F9; --ink:#15202A; --muted:#55636F; --line:#D3DAE1;
+  --sign:#0B4F9E; --on-sign:#FFFFFF;
+  --c0:#D2452C; --on-c0:#FFFFFF;
+  --c1:#E5AC00; --on-c1:#1E1600;
+  --c2:#1E8449; --on-c2:#FFFFFF;
+  --cn:#CBD3DA;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0F161C; --surface:#17212A; --surface2:#1D2933; --ink:#E9EEF2; --muted:#9AA8B4; --line:#2C3B48;
+    --sign:#6AAEFF; --on-sign:#07131F;
+    --c0:#FF8068; --on-c0:#2B0C05;
+    --c1:#F2C230; --on-c1:#241A00;
+    --c2:#52CB8B; --on-c2:#05200F;
+    --cn:#33434F;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0F161C; --surface:#17212A; --surface2:#1D2933; --ink:#E9EEF2; --muted:#9AA8B4; --line:#2C3B48;
+  --sign:#6AAEFF; --on-sign:#07131F;
+  --c0:#FF8068; --on-c0:#2B0C05;
+  --c1:#F2C230; --on-c1:#241A00;
+  --c2:#52CB8B; --on-c2:#05200F;
+  --cn:#33434F;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1rem/1.55 var(--font-body)}
+h1,h2,h3{font-family:var(--font-display);font-weight:700;margin:0;line-height:1.05}
+p{margin:0}
+button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--sign);outline-offset:2px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.skip{position:absolute;left:-999px;top:8px;background:var(--sign);color:var(--on-sign);padding:8px 14px;border-radius:8px;z-index:50}
+.skip:focus{left:8px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+
+/* En-tête et navigation */
+.top{background:var(--surface);border-bottom:1px solid var(--line)}
+.top-in{display:flex;align-items:center;gap:18px;height:64px}
+.brand{display:flex;align-items:center;gap:10px;font:700 1.55rem var(--font-display);letter-spacing:.01em;background:none;border:0;padding:0;cursor:pointer}
+.nav{display:flex;gap:2px;margin-left:auto}
+.nav button{display:flex;align-items:center;gap:8px;background:none;border:0;padding:9px 13px;border-radius:10px;font-weight:600;font-size:.95rem;color:var(--muted);cursor:pointer}
+.nav button:hover{background:var(--surface2);color:var(--ink)}
+.nav button[aria-current="page"]{background:var(--ink);color:var(--surface)}
+.nav svg,.theme svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.theme{background:none;border:1px solid var(--line);border-radius:10px;width:40px;height:40px;display:grid;place-items:center;cursor:pointer;color:var(--ink)}
+.theme:hover{background:var(--surface2)}
+main{padding-bottom:40px;outline:none}
+
+/* Boutons et champs */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--sign);color:var(--on-sign);border:1px solid var(--sign);border-radius:10px;padding:11px 18px;font-weight:700;font-size:.95rem;cursor:pointer;min-height:44px}
+.btn:hover{filter:brightness(1.08)}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn.ghost:hover{background:var(--surface2);filter:none}
+.btn.danger{background:transparent;color:var(--ink);border-color:var(--c0)}
+.btn.small{padding:7px 12px;min-height:36px;font-size:.85rem}
+.link{background:none;border:0;padding:0;color:var(--sign);font-weight:600;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.inp{font:inherit;padding:9px 12px;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:10px;min-height:44px;width:100%}
+textarea.inp{resize:vertical;line-height:1.45}
+.field{display:flex;flex-direction:column;gap:6px;font-weight:600;font-size:.9rem}
+.field .hint,.hint{font-weight:400;color:var(--muted);font-size:.88rem}
+.muted{color:var(--muted)}
+
+/* Composants de progression */
+.stack{display:flex;gap:2px;height:14px;border-radius:7px;overflow:hidden;background:var(--cn)}
+.stack i{display:block;min-width:3px}
+.s0{background:var(--c0)} .s1{background:var(--c1)} .s2{background:var(--c2)} .sn{background:var(--cn)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 18px;list-style:none;margin:12px 0 0;padding:0}
+.lg{display:inline-flex;align-items:center;gap:8px;font-size:.92rem;background:none;border:0;padding:3px 0;color:var(--ink)}
+button.lg{cursor:pointer}
+button.lg:hover span{text-decoration:underline;text-underline-offset:3px}
+.sw{width:12px;height:12px;border-radius:3px;flex:none;display:inline-block}
+.bar{display:flex;gap:1px;height:8px;border-radius:4px;overflow:hidden;background:var(--cn);width:100%}
+.bar i{display:block}
+.defs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:18px 0 0;padding:0;list-style:none}
+.defs li{border-top:4px solid var(--cn);padding-top:8px;font-size:.9rem;color:var(--muted)}
+.defs li b{display:block;color:var(--ink);font-size:.95rem}
+.defs .d0{border-color:var(--c0)} .defs .d1{border-color:var(--c1)} .defs .d2{border-color:var(--c2)}
+@media(max-width:640px){.defs{grid-template-columns:1fr}}
+
+/* Bilan */
+.hero{display:grid;grid-template-columns:minmax(280px,400px) minmax(0,1fr);gap:44px;align-items:center;padding:34px 0 26px}
+.cluster{position:relative;background:#121A21;color:#EAF0F4;border-radius:26px;padding:22px 18px 40px;border:1px solid #26333E;overflow:hidden}
+.cluster::after{content:"";position:absolute;left:0;right:0;bottom:16px;height:3px;background:repeating-linear-gradient(90deg,#EAF0F4 0 18px,transparent 18px 36px);opacity:.3}
+.cluster svg{display:block;width:100%;height:auto}
+.g-zone{fill:none;stroke-width:14}
+.z0{stroke:#E8654B} .z1{stroke:#F1BE2C} .z2{stroke:#4CC88A}
+.g-tick{stroke:#5F6E7A;stroke-width:2;stroke-linecap:round}
+.g-lab{fill:#93A1AD;font:600 13px var(--font-body)}
+.g-num{fill:#EAF0F4;font:700 54px var(--font-display);letter-spacing:0}
+.g-pc{fill:#93A1AD;font:600 20px var(--font-display)}
+.g-target{stroke:#FFFFFF;stroke-width:3.5;stroke-linecap:round}
+.needle{transform-origin:160px 160px;transition:transform 1.3s cubic-bezier(.16,.84,.24,1)}
+.needle line{stroke:#EAF0F4;stroke-width:4;stroke-linecap:round}
+.g-hub{fill:#EAF0F4}.g-hub2{fill:#121A21}
+.g-cap{display:flex;align-items:center;justify-content:center;gap:8px;font-size:.88rem;color:#B5C1CB;margin-top:2px}
+.g-key{display:inline-block;width:3px;height:16px;background:#fff;border-radius:2px}
+.hero h1{font-size:clamp(2.2rem,5vw,3.4rem);max-width:19ch;margin-bottom:12px}
+.lede{font-size:1.06rem;color:var(--muted);max-width:56ch}
+.hero .stack{margin-top:22px}
+.cta-row{display:flex;flex-wrap:wrap;align-items:center;gap:12px 16px;margin-top:22px}
+.exam{color:var(--muted);font-size:.95rem}
+@media(max-width:860px){.hero{grid-template-columns:1fr;gap:26px;padding-top:22px}.cluster{max-width:440px}}
+
+.cols{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:24px;align-items:start}
+.col{display:flex;flex-direction:column;gap:24px}
+@media(max-width:900px){.cols{grid-template-columns:1fr}}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px}
+.panel h2{font-size:1.6rem;margin-bottom:4px}
+.panel>.hint{margin-bottom:14px}
+.route{list-style:none;margin:0;padding:0;position:relative}
+.route::before{content:"";position:absolute;left:11px;top:16px;bottom:16px;border-left:2px dashed var(--line)}
+.stop{display:grid;grid-template-columns:24px minmax(0,1fr) 96px 44px;align-items:center;gap:12px;width:100%;text-align:left;background:none;border:0;padding:8px 6px 8px 0;cursor:pointer;border-radius:8px}
+.stop:hover{background:var(--surface2)}
+.stop-n{font-size:.85rem;color:var(--muted);text-align:right;font-variant-numeric:tabular-nums}
+.node{width:24px;height:24px;display:grid;place-items:center;position:relative;z-index:1}
+.node::before{content:"";width:14px;height:14px;border-radius:50%;background:var(--surface);border:2px solid var(--nc,var(--cn))}
+.stop:hover .node::before{background:var(--surface2)}
+.node.on::before{background:var(--nc)}
+.lesson{list-style:none;margin:12px 0 16px;padding:0}
+.lesson li{padding:10px 0;border-top:1px solid var(--line)}
+.lesson small{display:block;color:var(--muted);font-size:.8rem}
+.dom-row{display:grid;grid-template-columns:minmax(0,1fr) 110px 44px;gap:12px;align-items:center;padding:8px 0;border-top:1px solid var(--line)}
+.dom-row small{color:var(--muted)}
+.dom-row .pct{text-align:right;font-weight:700;font-variant-numeric:tabular-nums}
+
+/* Pages internes */
+.page-head{padding:30px 0 6px}
+.page-head h1{font-size:clamp(2rem,4.4vw,2.8rem);margin-bottom:8px}
+.sumbar{position:sticky;top:0;z-index:6;background:var(--bg);padding:12px 0;margin-top:14px;border-bottom:1px solid var(--line)}
+.sum-line{display:flex;align-items:baseline;gap:8px;margin-bottom:8px;flex-wrap:wrap}
+.sum-line .big{font:700 2.2rem var(--font-display);line-height:1}
+.sum-line .t{color:var(--muted);font-size:.92rem}
+.sumbar .legend{margin-top:8px}
+.filters{display:flex;flex-wrap:wrap;gap:10px 12px;align-items:end;margin:18px 0 0}
+.filters .field{min-width:200px;flex:1 1 220px;max-width:340px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:7px 14px;font-weight:600;font-size:.86rem;cursor:pointer;min-height:38px}
+.chip:hover{background:var(--surface2)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--surface);border-color:var(--ink)}
+.grp{margin-top:30px}
+.grp-h{display:flex;align-items:center;justify-content:space-between;gap:10px 20px;flex-wrap:wrap;padding-bottom:8px;border-bottom:2px solid var(--ink)}
+.grp-h h2{font-size:1.7rem}
+.grp-stat{display:flex;align-items:center;gap:12px;font-size:.88rem;color:var(--muted)}
+.grp-stat .bar{width:110px}
+.rows{list-style:none;margin:0;padding:0}
+.row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px 22px;align-items:center;padding:14px 0 14px 14px;border-bottom:1px solid var(--line);border-left:4px solid transparent}
+.row[data-l="0"]{border-left-color:var(--c0)} .row[data-l="1"]{border-left-color:var(--c1)} .row[data-l="2"]{border-left-color:var(--c2)}
+.row-meta{display:flex;gap:12px;font-size:.8rem;color:var(--muted);margin-bottom:2px}
+.row-text{font-weight:500}
+.row-ctl{display:flex;align-items:center;gap:8px}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--surface)}
+.lv{border:0;border-right:1px solid var(--line);background:transparent;font-weight:600;font-size:.82rem;padding:8px 12px;min-height:40px;cursor:pointer;white-space:nowrap}
+.lv:last-child{border-right:0}
+.lv:hover{background:var(--surface2)}
+.lv[aria-pressed="true"].l0{background:var(--c0);color:var(--on-c0)}
+.lv[aria-pressed="true"].l1{background:var(--c1);color:var(--on-c1)}
+.lv[aria-pressed="true"].l2{background:var(--c2);color:var(--on-c2)}
+.ico{width:40px;height:40px;border-radius:10px;border:1px solid var(--line);background:var(--surface);display:grid;place-items:center;cursor:pointer;color:var(--muted);flex:none}
+.ico:hover{background:var(--surface2);color:var(--ink)}
+.ico svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.ico[aria-pressed="true"]{background:var(--sign);border-color:var(--sign);color:var(--on-sign)}
+.ico[aria-pressed="true"] svg{fill:currentColor}
+.ico.has-note{color:var(--sign);border-color:var(--sign)}
+.note{grid-column:1/-1}
+@media(max-width:760px){
+  .row{grid-template-columns:1fr}
+  .row-ctl{flex-wrap:wrap}
+  .seg{flex:1 1 100%}
+  .lv{flex:1;padding:8px 4px}
+  .grp-stat .bar{width:80px}
+}
+.empty{border:2px dashed var(--line);border-radius:14px;padding:26px;text-align:center;color:var(--muted);margin-top:24px}
+.empty .btn{margin-top:12px}
+.banner{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 16px;border:1px solid var(--line);border-left:4px solid var(--sign);background:var(--surface);border-radius:10px;padding:14px 16px;margin-top:20px}
+.tools{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+
+/* Évolution */
+.chart{width:100%;height:auto;display:block}
+.chart .grid{stroke:var(--line);stroke-width:1}
+.chart .ax{fill:var(--muted);font:500 12px var(--font-body)}
+.chart .ln{fill:none;stroke:var(--sign);stroke-width:3;stroke-linejoin:round;stroke-linecap:round}
+.chart .ar{fill:var(--sign);opacity:.12}
+.chart .pt{fill:var(--surface);stroke:var(--sign);stroke-width:3}
+.chart .tg{stroke:var(--c2);stroke-width:2;stroke-dasharray:6 5}
+.chart .tgl{fill:var(--c2);font:700 12px var(--font-body)}
+.kpis{display:flex;flex-wrap:wrap;gap:8px 32px;margin:6px 0 14px}
+.kpi b{display:block;font:700 2rem var(--font-display);line-height:1.1}
+.kpi span{color:var(--muted);font-size:.86rem}
+.two{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:24px;align-items:start;margin-top:24px}
+@media(max-width:900px){.two{grid-template-columns:1fr}}
+.recent{list-style:none;margin:8px 0 0;padding:0}
+.recent li{display:grid;grid-template-columns:54px minmax(0,1fr) auto;gap:10px;align-items:center;padding:9px 0;border-top:1px solid var(--line);font-size:.9rem}
+.recent time{color:var(--muted);font-size:.82rem}
+.tag{display:inline-flex;align-items:center;gap:6px;font-size:.78rem;font-weight:600;border:1px solid var(--line);border-radius:999px;padding:2px 10px;white-space:nowrap}
+.tag i{width:8px;height:8px;border-radius:50%;display:inline-block}
+.feel{display:flex;flex-wrap:wrap;gap:8px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.form-grid .wide{grid-column:1/-1}
+@media(max-width:560px){.form-grid{grid-template-columns:1fr}}
+.entry{border-top:1px solid var(--line);padding:14px 0}
+.entry-h{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin-bottom:6px}
+.entry-h b{font-weight:700}
+.entry p{font-size:.94rem}
+.entry p span{font-weight:700}
+.entry .btn{margin-left:auto}
+
+
+/* Questions d'examen */
+.tabs{margin-top:20px}
+.tabs .chip{padding:10px 18px;font-size:.92rem}
+.fpick{margin-top:18px}
+.pick-row{display:flex;flex-wrap:wrap;align-items:flex-end;gap:12px;margin-top:12px}
+.pick-row .field{width:200px}
+.err{font-weight:600;margin-top:10px;min-height:1.4em}
+.err:not(:empty){border-left:4px solid var(--c0);padding-left:10px}
+.fiche-h{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;margin:28px 0 0}
+.fiche-h h2{font-size:clamp(2.2rem,6vw,3.4rem)}
+.fiche-tools{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+.step{margin-top:26px}
+.step-t{display:flex;align-items:center;gap:12px;font:700 1.55rem var(--font-display);padding-bottom:8px;border-bottom:2px solid var(--ink)}
+.step-n{display:grid;place-items:center;width:32px;height:32px;border-radius:50%;background:var(--ink);color:var(--surface);font:700 1.05rem var(--font-display);flex:none}
+.qcard{padding:14px 0 16px 14px;border-left:4px solid transparent;border-bottom:1px solid var(--line)}
+.qcard[data-l="0"]{border-left-color:var(--c0)} .qcard[data-l="1"]{border-left-color:var(--c1)} .qcard[data-l="2"]{border-left-color:var(--c2)}
+.q-meta{margin:0 0 6px}
+.q-text{font-weight:600;font-size:1.1rem;line-height:1.4;margin:0 0 6px}
+details.ans summary{cursor:pointer;color:var(--sign);font-weight:700;min-height:44px;display:flex;align-items:center;width:fit-content}
+.ans-body{margin:2px 0 10px;padding:12px 16px;background:var(--surface2);border:1px solid var(--line);border-radius:10px}
+.q-rate{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;margin-top:10px}
+.q-again{margin-top:8px;font-size:.86rem;color:var(--muted)}
+.qcats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:18px}
+.qcat b{display:block;font-size:.9rem;margin-bottom:6px}
+.qcat small{color:var(--muted);display:block;margin-top:5px;font-size:.82rem}
+@media(max-width:700px){.qcats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.fiche-row{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 18px 6px;margin-top:12px}
+.fiche-row-h{display:flex;align-items:center;flex-wrap:wrap;gap:8px 14px;margin-bottom:6px}
+.fnum{font:700 1.9rem var(--font-display);line-height:1}
+.fiche-row-h .link{margin-left:auto}
+.fq{padding:10px 0 4px;border-top:1px solid var(--line)}
+.fq small{color:var(--muted);font-weight:600;font-size:.8rem;display:flex;align-items:center;gap:8px}
+.fq .q-text{font-size:1rem;margin:4px 0 0}
+.fq details.ans summary{min-height:40px}
+.count-line{margin:14px 0 0}
+
+
+/* Mode d'emploi */
+.help-wrap{max-width:820px}
+.help-step p{margin:10px 0 0;max-width:62ch}
+.help-step .btn{margin-top:14px}
+.tips{list-style:none;margin:12px 0 0;padding:0}
+.tips li{padding:12px 0 12px 16px;border-top:1px solid var(--line);border-left:4px solid var(--sign)}
+.tips li:first-child{margin-top:0}
+.tips b{display:block}
+.rhythm{margin-top:28px}
+
+
+/* Mentions légales */
+.foot-links{display:flex;flex-wrap:wrap;gap:6px 22px}
+.legal main,.legal-body{display:block}
+.legal-body h2{font:700 1.55rem/1.1 var(--font-display);margin:34px 0 0;padding-bottom:8px;border-bottom:2px solid var(--ink)}
+.legal-body p,.legal-body ul{margin:10px 0 0;max-width:68ch}
+.legal-body ul{padding-left:1.2em}
+.legal-body li{margin-top:6px}
+.legal-body a{color:var(--sign);text-underline-offset:3px}
+.legal-body address{font-style:normal;margin-top:10px}
+.legal-body .upd{color:var(--muted);font-size:.92rem;margin:0}
+
+
+/* Sauvegarde et Jour J */
+.gear{display:none}
+.theme[aria-current="page"]{background:var(--ink);color:var(--surface)}
+.banner .tools{margin-top:0}
+.jj-hero{display:flex;flex-wrap:wrap;align-items:center;gap:8px 28px;margin-top:22px}
+.jj-count{font:700 clamp(4.5rem,15vw,8rem)/.9 var(--font-display)}
+.jj-hero p{max-width:46ch}
+.jj-checks{list-style:none;margin:6px 0 0;padding:0}
+.jj-checks label{display:flex;gap:12px;align-items:flex-start;padding:12px 0;border-top:1px solid var(--line);cursor:pointer}
+.jj-checks input{width:22px;height:22px;margin-top:2px;accent-color:var(--sign);flex:none}
+.jj-checks input:checked + span{color:var(--muted);text-decoration:line-through}
+.jj-h{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:6px 16px}
+.jj-sec{margin-top:34px}
+.jj-sec>h2{font:700 1.9rem var(--font-display);padding-bottom:8px;border-bottom:2px solid var(--ink)}
+.jj-note{margin-top:10px;max-width:62ch}
+.br-stage{position:relative;height:230px;display:grid;place-items:center;margin:6px 0 10px}
+.br-circle{width:180px;height:180px;border-radius:50%;border:4px solid var(--sign);background:var(--surface2);transform:scale(.6);transition-property:transform;transition-timing-function:ease-in-out;transition-duration:4s}
+.br-text{position:absolute;text-align:center;display:flex;flex-direction:column;gap:2px}
+.br-text strong{font:700 1.7rem var(--font-display)}
+.br-text span{font:700 2.4rem var(--font-display);line-height:1}
+.phrase{font:700 clamp(1.7rem,4.4vw,2.6rem)/1.1 var(--font-display);border-left:6px solid var(--sign);padding:6px 0 6px 18px;margin:14px 0 16px;max-width:24ch}
+.strong-list{margin:10px 0 0;padding-left:1.2em}
+.strong-list li{margin-top:6px}
+.visu{padding-left:1.3em;margin:10px 0 0;max-width:62ch}
+.visu li{margin-top:10px}
+@media(max-width:760px){
+  .top-in{gap:8px}
+  .gear{display:grid}
+  .nav .nav-set{display:none}
+}
+
+/* Réglages */
+.stackv{display:flex;flex-direction:column;gap:24px;max-width:820px;margin-top:22px}
+.check{display:flex;align-items:center;gap:10px;padding:8px 0;border-top:1px solid var(--line);cursor:pointer}
+.check input{width:20px;height:20px;accent-color:var(--sign)}
+.check .muted{margin-left:auto;font-size:.85rem}
+.range{display:flex;align-items:center;gap:14px}
+.range input{flex:1;accent-color:var(--sign)}
+.range output{font:700 1.5rem var(--font-display);min-width:3.2ch;text-align:right}
+.h3{font:700 1.15rem var(--font-body);margin:18px 0 6px}
+footer{border-top:1px solid var(--line);padding:22px 0 30px;color:var(--muted);font-size:.86rem}
+footer p+p{margin-top:6px}
+footer .copy{color:var(--ink);font-weight:600}
+#toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);background:var(--ink);color:var(--surface);padding:11px 18px;border-radius:10px;font-weight:600;font-size:.92rem;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;z-index:60;max-width:calc(100% - 32px)}
+#toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* Mobile : navigation en bas */
+@media(max-width:760px){
+  .nav{position:fixed;left:0;right:0;bottom:0;margin:0;background:var(--surface);border-top:1px solid var(--line);z-index:30;justify-content:space-around;padding:6px 4px calc(6px + env(safe-area-inset-bottom))}
+  .nav button{flex-direction:column;gap:2px;font-size:.68rem;padding:6px 2px;flex:1;border-radius:8px;min-width:0}
+  .top-in .help{margin-left:auto}
+  body{padding-bottom:76px}
+  #toast{bottom:92px}
+  .stop{grid-template-columns:24px minmax(0,1fr) 70px 40px;gap:8px}
+}
+@media(min-width:761px){.theme{margin-left:0}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}}
+@media print{
+  body{background:#fff;color:#000;padding:0}
+  .top,.nav,.no-print,.row-ctl,footer,#toast{display:none!important}
+  .row{break-inside:avoid;border-left-color:#000!important}
+  .note{display:none}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#app">Aller au contenu</a>
+<header class="top no-print">
+  <div class="wrap top-in">
+    <button type="button" class="brand" data-action="nav" data-view="dash" aria-label="Cap Permis, retour au bilan">
+      <svg viewBox="0 0 32 32" width="32" height="32" aria-hidden="true"><rect width="32" height="32" rx="9" fill="var(--sign)"/><path d="M8 28L14 5M24 28L18 5" stroke="var(--on-sign)" stroke-width="2.4" stroke-linecap="round" fill="none"/><path d="M16 27v-3.5M16 19.5v-4M16 11.5v-2.5" stroke="var(--on-sign)" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+      Cap Permis
+    </button>
+    <nav class="nav" aria-label="Navigation principale">
+      <button type="button" data-action="nav" data-view="dash"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 18a8 8 0 1 1 16 0"/><path d="M12 18l4-6"/></svg><span>Bilan</span></button>
+      <button type="button" data-action="nav" data-view="list"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 6h10M10 12h10M10 18h10"/><path d="M4 6l1.2 1.2L7.5 5M4 12l1.2 1.2L7.5 11M4 18l1.2 1.2L7.5 17"/></svg><span>Checklist</span></button>
+      <button type="button" data-action="nav" data-view="exam"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.6 9.4a2.5 2.5 0 1 1 3.6 2.3c-.8.4-1.2 1-1.2 1.8"/><path d="M12 17.2h.01"/></svg><span>Questions</span></button>
+      <button type="button" data-action="nav" data-view="plan"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 21V4"/><path d="M6 4h12l-2.5 4L18 12H6"/></svg><span>Plan</span></button>
+      <button type="button" data-action="nav" data-view="prog"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4v16h16"/><path d="M8 15l4-4 3 3 5-6"/></svg><span>Évolution</span></button>
+      <button type="button" data-action="nav" data-view="jj"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M8 3v4M16 3v4M4 10h16"/><path d="M9 15l2 2 4-4"/></svg><span>Jour J</span></button>
+      <button type="button" class="nav-set" data-action="nav" data-view="set"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/></svg><span>Réglages</span></button>
+    </nav>
+    <button type="button" class="theme help" data-action="nav" data-view="help" aria-label="Mode d'emploi" title="Mode d'emploi"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.6 9.4a2.5 2.5 0 1 1 3.6 2.3c-.8.4-1.2 1-1.2 1.8"/><path d="M12 17.2h.01"/></svg></button>
+    <button type="button" class="theme gear" data-action="nav" data-view="set" aria-label="Réglages" title="Réglages"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/></svg></button>
+    <button type="button" class="theme" data-action="theme" aria-label="Changer le thème clair ou sombre"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 4a8 8 0 0 1 0 16z" fill="currentColor"/></svg></button>
+  </div>
+</header>
+<main id="app" class="wrap" tabindex="-1"></main>
+<footer class="no-print">
+  <div class="wrap">
+    <p class="copy">© 2026 Cap Permis. Tous droits réservés.</p>
+    <p>Tes données restent sur cet appareil, dans ce navigateur. Exporte-les de temps en temps dans les réglages.</p>
+    <p>Cap Permis est un outil d'auto-évaluation. Il complète les conseils de ton moniteur, il ne les remplace pas.</p>
+    <p class="foot-links"><button type="button" class="link" data-action="nav" data-view="help">Mode d'emploi</button><button type="button" class="link" data-action="nav" data-view="legal">Mentions légales</button></p>
+  </div>
+</footer>
+<div id="toast" role="status" aria-live="polite"></div>
+<script>
+(function(){
+'use strict';
+
+/* ---------- Données : les réflexes à contrôler ---------- */
+var RAW = [
+["Avant départ","Installation","Siège, volant, rétros et appuie-tête correctement réglés"],
+["Avant départ","Sécurité","Ceinture attachée"],
+["Avant départ","Commandes","Savoir utiliser rapidement les commandes essentielles"],
+["Départ","Observation","Observer autour avant de démarrer"],
+["Départ","Contrôles","Rétro intérieur + extérieur + angle mort si nécessaire"],
+["Départ","Clignotant","Signaler son départ au bon moment"],
+["Départ","Commandes","Démarrer sans caler / sans à-coup"],
+["Départ","Trajectoire","Partir avec une trajectoire maîtrisée"],
+["En permanence","Vision","Regarder loin devant"],
+["En permanence","Observation","Scanner régulièrement l'environnement"],
+["En permanence","Rétroviseurs","Contrôler régulièrement sans fixer le tableau de bord"],
+["En permanence","Vitesse","Connaître la limitation actuelle"],
+["En permanence","Vitesse","Anticiper les changements de limitation"],
+["En permanence","Vitesse","Vérifier ponctuellement le compteur"],
+["En permanence","Allure","Éviter les freinages/accélérations tardifs"],
+["En permanence","Trajectoire","Maintenir le centrage sur la voie"],
+["En permanence","Sécurité","Maintenir une distance suffisante avec le véhicule devant"],
+["En permanence","Observation","Chercher piétons, vélos, motos, véhicules cachés"],
+["Intersection","Anticipation","Repérer l'intersection suffisamment tôt"],
+["Intersection","Observation","Se demander « qu'est-ce que je ne vois pas ? »"],
+["Intersection","Priorité","Identifier priorité à droite / route prioritaire"],
+["Intersection","Visibilité","Ralentir suffisamment tôt si visibilité limitée"],
+["Intersection","Piétons","Vérifier les passages piétons et leurs abords"],
+["Intersection","Allure","Arriver à une vitesse permettant de s'arrêter"],
+["Feux","Anticipation","Observer le feu suffisamment loin"],
+["Feux","Allure","Adapter l'allure avant d'arriver au feu"],
+["Feux","Piétons","Vérifier les piétons lors d'un changement de direction"],
+["Stop","Réglementation","Arrêt complet à la ligne"],
+["Cédez-le-passage","Observation","Observer suffisamment avant de s'engager"],
+["Giratoire","Approche","Choisir sa voie suffisamment tôt"],
+["Giratoire","Allure","Adapter l'allure avant l'entrée"],
+["Giratoire","Observation","Observer les véhicules déjà engagés"],
+["Giratoire","Piétons","Vérifier les passages piétons"],
+["Giratoire","Clignotant","Signaler correctement sa trajectoire/sortie"],
+["Changement de voie","Anticipation","Repérer le changement de voie suffisamment tôt"],
+["Changement de voie","Contrôles","Rétro → clignotant → angle mort → déplacement"],
+["Changement de voie","Action","Se déporter progressivement"],
+["Changement de voie","Sécurité","Ne jamais se déporter si espace insuffisant"],
+["Dépassement","Observation","Vérifier visibilité et espace disponible"],
+["Dépassement","Contrôles","Contrôler rétros et angle mort"],
+["Dépassement","Allure","Effectuer le dépassement sans précipitation"],
+["Dépassement","Retour","Contrôler avant de se rabattre"],
+["Obstacle","Anticipation","Repérer véhicule arrêté/obstacle suffisamment tôt"],
+["Obstacle","Positionnement","Garder une visibilité suffisante autour de l'obstacle"],
+["Obstacle","Sécurité","Ne pas forcer le passage"],
+["Autoroute","Insertion","Construire sa vitesse sur voie d'accélération"],
+["Autoroute","Observation","Chercher un espace disponible suffisamment tôt"],
+["Autoroute","Contrôles","Rétros + angle mort avant insertion"],
+["Autoroute","Allure","Maintenir une vitesse adaptée"],
+["Autoroute","Sortie","Repérer la sortie suffisamment tôt"],
+["Autoroute","Sortie","Se positionner progressivement"],
+["Autoroute","Sortie","Adapter l'allure après la sortie"],
+["Boîte manuelle","Rapports","Choisir le rapport adapté à la situation"],
+["Boîte manuelle","Embrayage","Éviter la roue libre"],
+["Boîte manuelle","Embrayage","Relâcher l'embrayage progressivement"],
+["Boîte manuelle","Accélérateur","Ne pas accélérer inutilement pendant le passage de rapport"],
+["Boîte manuelle","Montée","Anticiper l'accélération en montée"],
+["Boîte manuelle","Montée","Rétrograder si nécessaire plutôt que laisser le moteur peiner"],
+["Boîte manuelle","Freinage","Freiner progressivement"],
+["Manœuvre","Observation","Regarder tout autour avant de commencer"],
+["Manœuvre","Vitesse","Manœuvrer lentement"],
+["Manœuvre","Contrôles","Contrôler régulièrement autour du véhicule"],
+["Manœuvre","Sécurité","Être capable de s'arrêter immédiatement si nécessaire"],
+["Stationnement","Créneau","Effectuer le créneau avec une méthode maîtrisée"],
+["Stationnement","Bataille","Effectuer le stationnement en bataille avec contrôles"],
+["Stationnement","Sortie","Observer avant de quitter la place"],
+["Navigation","Autonomie","Suivre une direction sans attendre chaque instruction"],
+["Navigation","Erreur","Si je me trompe, rester calme et poursuivre en sécurité"],
+["Navigation","Observation","Ne pas rater les panneaux de direction"],
+["Analyse","Anticipation","Me demander ce qui peut arriver dans les prochaines secondes"],
+["Analyse","Vision loin","Détecter les situations avant qu'elles deviennent urgentes"],
+["Adaptation","Allure","Adapter ma vitesse AVANT la situation"],
+["Adaptation","Positionnement","Choisir ma position avant d'être dans la situation"],
+["Examen","Concentration","Me concentrer sur la route plutôt que sur ma performance"],
+["Examen","Stress","Une erreur ≠ échec : je continue normalement"],
+["Examen","Déréalisation","Revenir à l'environnement concret : route/panneau/usager/allure"],
+["Examen","Sécurité","Ne jamais prendre une décision précipitée pour « faire vite »"],
+["Examen","Sécurité","Priorité absolue : observer → analyser → agir"]
+];
+var ITEMS = RAW.map(function(r,i){ return {id:i+1, moment:r[0], domain:r[1], text:r[2]}; });
+var MOMENTS = ITEMS.reduce(function(a,i){ if(a.indexOf(i.moment)<0) a.push(i.moment); return a; },[]);
+var LV = [
+  {k:0, name:"À travailler", cls:"l0", help:"Je ne le fais pas encore, ou seulement quand j'y pense."},
+  {k:1, name:"En progrès",   cls:"l1", help:"Je le fais, mais pas à chaque fois."},
+  {k:2, name:"Automatisé",   cls:"l2", help:"Je le fais à chaque fois, sans y penser."}
+];
+var FEEL = ["","Difficile","Moyen","Correct","Bien","Très bien"];
+var EXAMPLE_TODO = [9,10,15,20,24,35,70,71,72,73,77,78];
+var KEY = 'cap-permis-v1', THEME_KEY = 'cap-permis-theme';
+var QB = {"items":[{"id":"i1","cat":"int","q":"Montrez la commande de réglage de hauteur des feux.","a":"Dispositif situé en général à gauche du volant."},{"id":"i2","cat":"int","q":"Mettez le rétroviseur intérieur en position « nuit ».","a":"Si le véhicule a un système automatique de position « nuit », le candidat l'indique. Si le rétroviseur de l'accompagnateur gêne la manipulation, l'explication suffit."},{"id":"i3","cat":"int","q":"Faites fonctionner les essuie-glaces avant du véhicule sur la position la plus rapide.","a":""},{"id":"i4","cat":"int","q":"Vérifiez la présence du gilet de haute visibilité.","a":"Indiquer où il se trouve, sans obligation de le sortir. Le terme « gilet jaune » est accepté."},{"id":"i5","cat":"int","q":"Vérifiez la présence du certificat d'immatriculation du véhicule (ou carte grise).","a":"La photocopie est acceptée."},{"id":"i6","cat":"int","q":"Montrez l'indicateur de niveau de carburant.","a":""},{"id":"i7","cat":"int","q":"Actionnez le dégivrage de la lunette arrière et montrez le voyant ou le repère correspondant.","a":"Repère : lunette arrière avec des flèches ondulées (voyant jaune-orangé)."},{"id":"i8","cat":"int","q":"Montrez le voyant d'alerte signalant une pression insuffisante d'huile dans le moteur.","a":"Voyant rouge en forme de burette d'huile."},{"id":"i9","cat":"int","q":"Vérifiez la présence de l'éthylotest.","a":""},{"id":"i10","cat":"int","q":"Montrez la commande de réglage du volant.","a":"Montrer l'emplacement de la commande. Il n'est pas demandé de changer le réglage."},{"id":"i11","cat":"int","q":"Positionnez la commande pour diriger l'air vers le pare-brise.","a":"La position auto (désembuage automatique) peut être utilisée si le véhicule en est équipé."},{"id":"i12","cat":"int","q":"Montrez le voyant d'alerte signalant un défaut de batterie.","a":"Voyant rouge en forme de batterie (symboles + et −)."},{"id":"i13","cat":"int","q":"De quelle couleur est le voyant qui indique une défaillance du système de freinage ?","a":"Rouge."},{"id":"i14","cat":"int","q":"Montrez le voyant d'alerte signalant une température trop élevée du liquide de refroidissement.","a":"Voyant rouge : un thermomètre plongé dans des vagues."},{"id":"i15","cat":"int","q":"Montrez le voyant signalant la mauvaise fermeture d'une portière.","a":"Voyant rouge : voiture vue de dessus avec une portière ouverte."},{"id":"i16","cat":"int","q":"Actionnez les feux de détresse.","a":""},{"id":"i17","cat":"int","q":"Montrez la commande permettant d'actionner le régulateur de vitesse.","a":"Repère : symbole de compteur de vitesse (jaune-orangé)."},{"id":"i18","cat":"int","q":"Sans l'actionner, montrez la commande de l'avertisseur sonore.","a":""},{"id":"i19","cat":"int","q":"Montrez la commande permettant de désactiver l'airbag du passager avant.","a":"Repère : voyant rouge représentant un passager et son airbag."},{"id":"i20","cat":"int","q":"Montrez le voyant signalant l'absence de bouclage de la ceinture de sécurité du conducteur.","a":"Voyant rouge : une personne avec sa ceinture."},{"id":"i21","cat":"int","q":"Vérifiez la présence de l'attestation d'assurance du véhicule et de sa vignette sur le pare-brise.","a":""},{"id":"i22","cat":"int","q":"Allumez le ou les feux de brouillard arrière et montrez le voyant correspondant.","a":"Voyant orange (jaune-orangé)."},{"id":"i23","cat":"int","q":"Montrez comment régler la hauteur de l'appui-tête du siège conducteur.","a":""},{"id":"i24","cat":"int","q":"De quelle couleur est le voyant qui indique au conducteur que le feu de brouillard arrière est allumé ?","a":"Orange."},{"id":"i25","cat":"int","q":"Montrez la commande de recyclage de l'air.","a":""},{"id":"i26","cat":"int","q":"Allumez les feux de route et montrez le voyant correspondant.","a":"Voyant bleu."},{"id":"i27","cat":"int","q":"Vérifiez la présence du constat amiable dans le véhicule.","a":""},{"id":"i28","cat":"int","q":"Si le véhicule en est équipé, montrez la commande du limiteur de vitesse.","a":"Repère : symbole de compteur de vitesse (jaune-orangé)."},{"id":"i29","cat":"int","q":"Faites fonctionner l'essuie-glace arrière du véhicule.","a":""},{"id":"i30","cat":"int","q":"Indiquez où se situent les attaches de type Isofix dans le véhicule.","a":"Pour info : ces attaches sont obligatoires sur les véhicules neufs depuis 2011."},{"id":"i31","cat":"int","q":"Montrez sur le tableau de bord le voyant indiquant une baisse de pression d'air d'un pneumatique.","a":"Pour info : obligatoire sur tous les véhicules neufs mis en circulation à compter du 01/11/2014."},{"id":"e1","cat":"ext","q":"Montrez où s'effectue le remplissage du produit lave-glace.","a":"Ouvrir le capot et montrer le bocal. Si le candidat a des difficultés pour ouvrir le capot, l'accompagnateur peut l'aider."},{"id":"e2","cat":"ext","q":"Contrôlez l'état du flanc sur l'un des pneumatiques.","a":"En bon état (toute anomalie doit être signalée)."},{"id":"e3","cat":"ext","q":"Vérifiez l'état et la propreté des plaques d'immatriculation.","a":"Plaques avant et arrière propres et en bon état (toute anomalie doit être signalée)."},{"id":"e4","cat":"ext","q":"Montrez où s'effectue le contrôle du niveau du liquide de frein.","a":"Montrer que le niveau est entre le mini et le maxi. Si le candidat a des difficultés pour ouvrir le capot, l'accompagnateur peut l'aider."},{"id":"e5","cat":"ext","q":"Contrôlez l'état de tous les balais d'essuie-glace du véhicule.","a":""},{"id":"e6","cat":"ext","q":"Montrez où s'effectue le remplissage du liquide de refroidissement.","a":"Ouvrir le capot et montrer le bocal. Si le candidat a des difficultés pour ouvrir le capot, l'accompagnateur peut l'aider."},{"id":"e7","cat":"ext","q":"Contrôlez l'état, la propreté et le fonctionnement de tous les clignotants côté trottoir.","a":"Éléments propres, en bon état et qui fonctionnent (toute anomalie doit être signalée)."},{"id":"e8","cat":"ext","q":"Contrôlez l'état, la propreté et le fonctionnement du ou des feux de brouillard arrière.","a":"Éléments propres, en bon état et qui fonctionnent (toute anomalie doit être signalée)."},{"id":"e9","cat":"ext","q":"Contrôlez l'état, la propreté et le fonctionnement des feux de détresse à l'avant et à l'arrière.","a":"Éléments propres, en bon état et qui fonctionnent (toute anomalie doit être signalée)."},{"id":"e10","cat":"ext","q":"Contrôlez l'état, la propreté et le fonctionnement des feux de route.","a":"Éléments propres, en bon état et qui fonctionnent (toute anomalie doit être signalée)."},{"id":"e11","cat":"ext","q":"Montrez où doit s'effectuer le contrôle du niveau d'huile moteur.","a":"Montrer la jauge (pas de manipulation exigée). Si le candidat a des difficultés pour ouvrir le capot, l'accompagnateur peut l'aider."},{"id":"e12","cat":"ext","q":"Montrez l'emplacement de la batterie du véhicule.","a":"Si le candidat a des difficultés pour ouvrir le capot, l'accompagnateur peut l'aider."},{"id":"e13","cat":"ext","q":"Contrôlez l'état, la propreté et le fonctionnement des feux de croisement.","a":"Éléments propres, en bon état et qui fonctionnent (toute anomalie doit être signalée)."},{"id":"e14","cat":"ext","q":"Vérifiez l'état et la propreté des dispositifs réfléchissants.","a":"Dispositifs propres et en bon état (toute anomalie doit être signalée)."},{"id":"e15","cat":"ext","q":"Contrôlez l'état, la propreté et le fonctionnement des feux de position à l'avant et à l'arrière du véhicule.","a":"Éléments propres, en bon état et qui fonctionnent (toute anomalie doit être signalée)."},{"id":"e16","cat":"ext","q":"Sur le flanc d'un pneumatique, désignez le repère du témoin d'usure de la bande de roulement.","a":"Désigner le repère. Toute anomalie doit être signalée."},{"id":"e17","cat":"ext","q":"Ouvrez la trappe à carburant et/ou vérifiez la bonne fermeture du bouchon.","a":"En bon état (toute anomalie doit être signalée)."},{"id":"e18","cat":"ext","q":"Montrez où s'effectue le remplissage de l'huile moteur.","a":"Montrer le bouchon de remplissage. Si le candidat a des difficultés pour ouvrir le capot, l'accompagnateur peut l'aider."},{"id":"e19","cat":"ext","q":"À l'aide de la plaque indicative, donnez la pression préconisée pour les pneumatiques arrière, véhicule chargé.","a":""},{"id":"e20","cat":"ext","q":"Vérifiez le fonctionnement de l'éclairage de la plaque d'immatriculation à l'arrière.","a":"Toute anomalie doit être signalée."},{"id":"e21","cat":"ext","q":"Indiquez où se situe la sécurité enfant sur l'une des portières à l'arrière du véhicule.","a":""},{"id":"e22","cat":"ext","q":"Avec l'assistance de l'accompagnateur, contrôlez l'état, la propreté et le fonctionnement du ou des feux de recul.","a":"Éléments propres, en bon état et qui fonctionnent (toute anomalie doit être signalée)."},{"id":"e23","cat":"ext","q":"Avec l'assistance de l'accompagnateur, contrôlez l'état, la propreté et le fonctionnement des feux de stop.","a":"Éléments propres, en bon état et qui fonctionnent (toute anomalie doit être signalée)."},{"id":"e24","cat":"ext","q":"Ouvrez et refermez le capot, puis vérifiez sa bonne fermeture.","a":""},{"id":"e25","cat":"ext","q":"Procédez à l'ouverture du capot puis à sa fermeture en vous assurant de son verrouillage.","a":""},{"id":"e26","cat":"ext","q":"Ouvrez et refermez le coffre, puis vérifiez sa bonne fermeture.","a":""},{"id":"e27","cat":"ext","q":"Montrez où se situent les gicleurs de lave-glace avant.","a":""},{"id":"e28","cat":"ext","q":"Montrez où s'effectue le changement d'une ampoule à l'avant du véhicule.","a":"Si le candidat a des difficultés pour ouvrir le capot, l'accompagnateur peut l'aider."},{"id":"e29","cat":"ext","q":"Montrez où s'effectue le changement d'une ampoule à l'arrière du véhicule.","a":""},{"id":"e30","cat":"ext","q":"Vérifiez l'état, la propreté et le fonctionnement des feux diurnes.","a":"Éléments propres, en bon état et qui fonctionnent (toute anomalie doit être signalée)."},{"id":"e31","cat":"ext","q":"Vérifiez la présence du triangle de pré-signalisation.","a":""},{"id":"q1","cat":"qser","q":"Pourquoi doit-on régler la hauteur des feux ?","a":"Pour ne pas éblouir les autres usagers."},{"id":"q2","cat":"qser","q":"Pourquoi est-il préférable d'utiliser un liquide lave-glace spécial en hiver ?","a":"Pour éviter le gel du liquide."},{"id":"q3","cat":"qser","q":"Quel est l'intérêt de la position « nuit » du rétroviseur ?","a":"Ne pas être ébloui par les feux du véhicule qui suit."},{"id":"q4","cat":"qser","q":"Citez un endroit où l'on peut trouver les pressions préconisées pour les pneumatiques.","a":"Sur une plaque sur une portière, dans la notice d'utilisation du véhicule, ou au niveau de la trappe à carburant."},{"id":"q5","cat":"qser","q":"Comment détecter l'usure des essuie-glaces en circulation ?","a":"En cas de pluie, ils laissent des traces sur le pare-brise."},{"id":"q6","cat":"qser","q":"Quelles sont les précautions à prendre en cas d'installation d'un porte-vélo ?","a":"La plaque d'immatriculation et les feux doivent rester visibles."},{"id":"q7","cat":"qser","q":"En cas de panne ou d'accident, quel autre accessoire de sécurité est obligatoire ?","a":"Le triangle de pré-signalisation."},{"id":"q8","cat":"qser","q":"Quelle est la conséquence d'un niveau insuffisant du liquide de frein ?","a":"Une perte d'efficacité du freinage."},{"id":"q9","cat":"qser","q":"Quels sont les deux autres documents obligatoires à présenter lors d'un contrôle des forces de l'ordre (en plus de la carte grise) ?","a":"L'attestation d'assurance et le permis de conduire."},{"id":"q9b","cat":"qser","q":"Quels sont les deux autres documents obligatoires à présenter lors d'un contrôle des forces de l'ordre (en plus de l'attestation d'assurance) ?","a":"Le certificat d'immatriculation (« carte grise » est accepté) et le permis de conduire."},{"id":"q10","cat":"qser","q":"Quel est le risque de circuler avec des balais d'essuie-glace défectueux ?","a":"Une mauvaise visibilité en cas d'intempéries."},{"id":"q11","cat":"qser","q":"Quelles sont les précautions à prendre lors du remplissage du réservoir ?","a":"Arrêter le moteur, ne pas fumer, ne pas téléphoner."},{"id":"q12","cat":"qser","q":"Quel est le danger si l'on complète le niveau du liquide lorsque le moteur est chaud ?","a":"Un risque de brûlure."},{"id":"q13","cat":"qser","q":"Quelle peut être la conséquence d'une panne de dégivrage de la lunette arrière ?","a":"Une insuffisance ou une absence de visibilité vers l'arrière."},{"id":"q14","cat":"qser","q":"Quelle est la signification d'un clignotement plus rapide ?","a":"Non-fonctionnement de l'une des ampoules."},{"id":"q15","cat":"qser","q":"Quelles sont les conditions à respecter pour contrôler (ou compléter) le niveau d'huile ?","a":"Moteur froid et sur un terrain plat."},{"id":"q16","cat":"qser","q":"Dans quels cas utilise-t-on les feux de brouillard arrière ?","a":"Par temps de brouillard et de neige."},{"id":"q17","cat":"qser","q":"À partir de quel taux d'alcoolémie, en période de permis probatoire, est-on en infraction ?","a":"0,2 g/l, soit 0 verre, car dès le premier verre ce seuil peut être dépassé."},{"id":"q18","cat":"qser","q":"Dans quels cas doit-on utiliser les feux de détresse ?","a":"En cas de panne, d'accident ou de ralentissement important."},{"id":"q19","cat":"qser","q":"Pourquoi est-il important de bien régler son volant ? Citez deux exemples.","a":"Le confort de conduite, l'accessibilité aux commandes, la visibilité du tableau de bord, l'efficacité des airbags."},{"id":"q20","cat":"qser","q":"Citez un cas d'utilisation de l'appel lumineux.","a":"Pour avertir de son approche, en cas de danger, ou à la place de l'avertisseur sonore."},{"id":"q21","cat":"qser","q":"Citez deux éléments complémentaires permettant un désembuage efficace.","a":"La commande de vitesse de ventilation, la commande d'air chaud, la climatisation."},{"id":"q22","cat":"qser","q":"Quel est le principal risque d'un manque d'huile moteur ?","a":"Un risque de détérioration ou de casse du moteur."},{"id":"q23","cat":"qser","q":"Qu'est-ce qui peut provoquer la décharge de la batterie, moteur éteint ?","a":"Les feux ou accessoires électriques en fonctionnement."},{"id":"q24","cat":"qser","q":"Quelle est la solution en cas de panne de batterie pour démarrer le véhicule sans le déplacer ?","a":"Brancher une deuxième batterie en parallèle (les + ensemble et les − ensemble) ou remplacer la batterie."},{"id":"q25","cat":"qser","q":"Quel est le risque de circuler avec un frein de parking mal desserré ?","a":"Une dégradation du système de freinage."},{"id":"q26","cat":"qser","q":"Quelles sont les conséquences d'un mauvais réglage des feux de croisement ?","a":"Une mauvaise vision vers l'avant et un risque d'éblouissement des autres usagers."},{"id":"q27","cat":"qser","q":"Quelle est la conséquence d'une température trop élevée du liquide de refroidissement ?","a":"Une surchauffe ou une casse moteur."},{"id":"q28","cat":"qser","q":"Quelle est l'utilité des dispositifs réfléchissants ?","a":"Rendre le véhicule visible la nuit."},{"id":"q29","cat":"qser","q":"Quelle précaution prendre pour que les enfants installés à l'arrière ne puissent pas ouvrir leur portière ?","a":"Actionner la sécurité enfant sur les deux portières arrière."},{"id":"q30","cat":"qser","q":"Par temps clair, à quelle distance les feux de position doivent-ils être visibles ?","a":"À 150 mètres."},{"id":"q31","cat":"qser","q":"Qu'est-ce que l'aquaplanage, et quelle peut être sa conséquence ?","a":"La présence d'un film d'eau entre le pneumatique et la chaussée, pouvant entraîner une perte de contrôle du véhicule."},{"id":"q32","cat":"qser","q":"Sans actionner la commande du régulateur, comment le désactiver rapidement ?","a":"En appuyant sur la pédale de frein ou d'embrayage."},{"id":"q33","cat":"qser","q":"Dans quel cas peut-on utiliser l'avertisseur sonore en agglomération ?","a":"En cas de danger immédiat."},{"id":"q34","cat":"qser","q":"Dans quelle situation doit-on désactiver l'airbag du passager avant ?","a":"Lors du transport d'un enfant à l'avant dans un siège auto placé dos à la route."},{"id":"q35","cat":"qser","q":"À quelle fréquence est-il préconisé de vérifier la pression des pneumatiques ?","a":"Chaque mois pour une utilisation normale du véhicule, et avant chaque long trajet."},{"id":"q36","cat":"qser","q":"En règle générale, à partir de quel âge un enfant peut-il être installé sur le siège passager avant ?","a":"10 ans."},{"id":"q37","cat":"qser","q":"Un défaut d'éclairage de la plaque d'immatriculation lors du contrôle technique entraîne-t-il une contre-visite ?","a":"Oui."},{"id":"q38","cat":"qser","q":"Si la sécurité enfant est enclenchée, est-il possible d'ouvrir la portière arrière depuis l'extérieur ?","a":"Oui."},{"id":"q39","cat":"qser","q":"Peut-on utiliser les feux de brouillard arrière par forte pluie ?","a":"Non."},{"id":"q40","cat":"qser","q":"Quelles sont les deux utilités des feux de recul ?","a":"Éclairer la zone de recul la nuit et avertir les autres usagers de la manœuvre."},{"id":"q41","cat":"qser","q":"Quelle est l'utilité de l'appui-tête ?","a":"Retenir le mouvement de la tête en cas de choc et limiter les blessures."},{"id":"q42","cat":"qser","q":"Quelle est la conséquence en cas de panne des feux de stop ?","a":"Un manque d'information pour les usagers qui suivent et un risque de collision."},{"id":"q43","cat":"qser","q":"Quelle est la différence entre un voyant orange et un voyant rouge ?","a":"Rouge : une anomalie de fonctionnement ou un danger. Orange : un élément important."},{"id":"q44","cat":"qser","q":"En roulant, quel est le risque d'une mauvaise fermeture du capot ?","a":"Une ouverture du capot pouvant entraîner un accident."},{"id":"q45","cat":"qser","q":"Quel peut être le risque de maintenir le recyclage de l'air de manière prolongée ?","a":"Une mauvaise visibilité, à cause de la buée sur les surfaces vitrées."},{"id":"q46","cat":"qser","q":"Quel est le principal risque d'une absence de liquide lave-glace ?","a":"Une mauvaise visibilité."},{"id":"q47","cat":"qser","q":"Quel est le risque de maintenir les feux de route lors d'un croisement avec d'autres usagers ?","a":"L'éblouissement des autres usagers."},{"id":"q48","cat":"qser","q":"Quelle est l'utilité des feux diurnes ?","a":"Rendre le véhicule plus visible le jour."},{"id":"q49","cat":"qser","q":"En cas d'accident, dans quel délai le constat amiable doit-il être transmis à l'assureur ?","a":"5 jours."},{"id":"q50","cat":"qser","q":"Utilise-t-on le triangle de pré-signalisation sur autoroute ?","a":"Non."},{"id":"q51","cat":"qser","q":"Quelles sont les conséquences en cas de panne d'un feu de croisement ?","a":"Une mauvaise visibilité et le risque d'être confondu avec un deux-roues."},{"id":"q52","cat":"qser","q":"Quelle est l'utilité d'un limiteur de vitesse ?","a":"Ne pas dépasser la vitesse programmée par le conducteur."},{"id":"q53","cat":"qser","q":"Quelles sont les conséquences en cas de panne d'un feu de position arrière ?","a":"Être mal vu et un risque de collision."},{"id":"q54","cat":"qser","q":"Pour une bonne visibilité vers l'arrière par temps de pluie, en plus de l'essuie-glace, quelle commande peut-on actionner ?","a":"La commande de désembuage arrière (le terme « dégivrage » peut la remplacer)."},{"id":"q55","cat":"qser","q":"Avec un poids important dans le coffre, quelles précautions prendre pour les pneumatiques et l'éclairage avant ?","a":"Augmenter la pression des pneumatiques et régler la hauteur des feux avant."},{"id":"q56","cat":"qser","q":"Peut-on fixer tous les sièges enfant sur des attaches de type Isofix ?","a":"Non, uniquement ceux compatibles avec ce type d'attache."},{"id":"q57","cat":"qser","q":"Quels sont les risques de circuler avec des objets sur la plage arrière ?","a":"Une mauvaise visibilité vers l'arrière et un risque de projection en cas de freinage brusque ou de choc."},{"id":"q58","cat":"qser","q":"Pour un capot qui s'ouvre depuis l'avant, quelle est l'utilité du dispositif de sécurité ?","a":"Empêcher l'ouverture du capot en circulation en cas de mauvais verrouillage."},{"id":"q59","cat":"qser","q":"Quelle est la principale conséquence d'un dispositif de lave-glace défaillant ?","a":"Une mauvaise visibilité, car on ne peut plus nettoyer le pare-brise."},{"id":"s1","cat":"sec","q":"Comment et pourquoi protéger une zone de danger en cas d'accident de la route ?","a":"En délimitant clairement et largement la zone de danger, de façon visible, pour protéger les victimes et éviter un sur-accident."},{"id":"s2","cat":"sec","q":"Quels comportements adopter en cas de diffusion du signal d'alerte du SAIP (Système d'Alerte et d'Information des Populations) ?","a":"Se mettre en sécurité ; s'informer via les médias et les sites des autorités dès que possible ; respecter les consignes des autorités."},{"id":"s3","cat":"sec","q":"Comment est composé le signal d'alerte du SAIP diffusé par les sirènes ?","a":"Deux codes distincts : le Signal National d'Alerte (SNA), variation du signal sur trois cycles successifs, et le signal de fin d'alerte, signal continu."},{"id":"s4","cat":"sec","q":"Sur autoroute, comment indiquer avec précision les lieux de l'accident depuis un téléphone portable ?","a":"En indiquant le numéro de l'autoroute, le sens de circulation et le point kilométrique."},{"id":"s5","cat":"sec","q":"Comment vérifier la respiration d'une victime ?","a":"Regarder si le ventre et la poitrine se soulèvent et sentir de l'air à l'expiration."},{"id":"s6","cat":"sec","q":"Qu'est-ce qu'une perte de connaissance ?","a":"C'est lorsque la victime ne répond pas et ne réagit pas, mais respire."},{"id":"s7","cat":"sec","q":"Si un dégagement d'urgence de la victime est nécessaire, où doit-elle être déplacée ?","a":"Dans un endroit suffisamment éloigné du danger et de ses conséquences."},{"id":"s8","cat":"sec","q":"En cas de panne ou d'accident, quel équipement de sécurité doit être porté avant de quitter le véhicule ?","a":"Le gilet de haute visibilité (le terme « gilet jaune » est accepté)."},{"id":"s9","cat":"sec","q":"Pourquoi l'alerte auprès des services de secours doit-elle être rapide et précise ?","a":"Pour permettre aux secours d'apporter les moyens adaptés aux victimes dans le délai le plus court."},{"id":"s10","cat":"sec","q":"Quels sont les numéros d'urgence à composer ?","a":"Le 18 (sapeurs-pompiers), le 15 (SAMU) et le 112 (numéro d'urgence valable dans toute l'Union européenne)."},{"id":"s11","cat":"sec","q":"Quels comportements adopter en présence d'une victime qui ne répond pas et ne réagit pas, mais respire ?","a":"La placer en position stable sur le côté (PLS), alerter les secours, surveiller sa respiration jusqu'à leur arrivée."},{"id":"s12","cat":"sec","q":"Comment arrêter une hémorragie ?","a":"Appuyer fortement sur l'endroit qui saigne, avec les doigts ou la paume de la main, en mettant un tissu propre sur la plaie."},{"id":"s13","cat":"sec","q":"Hors autoroute ou endroit dangereux, en cas de panne ou d'accident, où doit être placé le triangle de pré-signalisation ?","a":"À environ 30 m de la panne ou de l'accident, ou avant un virage ou un sommet de côte."},{"id":"s14","cat":"sec","q":"Quelles sont les conditions pour réaliser le dégagement d'urgence d'une victime en présence d'un danger réel, immédiat et non contrôlable ?","a":"La victime doit être visible, facile à atteindre, rien ne doit gêner son dégagement, et il faut être sûr de pouvoir la dégager."},{"id":"s15","cat":"sec","q":"Quelles sont les trois informations à transmettre aux services de secours ?","a":"Le numéro de téléphone d'où l'on appelle, la nature du problème et sa localisation la plus précise."},{"id":"s16","cat":"sec","q":"Par quels moyens doit être réalisée l'alerte des secours ?","a":"Avec un téléphone portable ou, à défaut, un téléphone fixe ou une borne d'appel d'urgence."},{"id":"s17","cat":"sec","q":"Quel comportement doit-on adopter en présence d'une victime en arrêt cardiaque ?","a":"ALERTER immédiatement les secours, MASSER (réanimation cardio-pulmonaire), DÉFIBRILLER avec un DAE si possible."},{"id":"s18","cat":"sec","q":"Dans quel cas peut-on positionner une victime en Position Latérale de Sécurité (PLS) ?","a":"Si la victime ne répond pas, ne réagit pas et respire."},{"id":"s19","cat":"sec","q":"Dans quelle situation peut-on déplacer une victime ?","a":"En présence d'un danger réel, immédiat et non contrôlable. Ce déplacement doit rester exceptionnel."},{"id":"s20","cat":"sec","q":"Quel est l'objectif du SAIP (Système d'Alerte et d'Information des Populations) ?","a":"Avertir la population d'un danger imminent ou d'un événement grave en train de se produire."},{"id":"s21","cat":"sec","q":"Comment est diffusée l'alerte émise par le SAIP ?","a":"Grâce aux sirènes, aux médias tels que Radio France et France Télévisions, ou à l'application SAIP."},{"id":"s22","cat":"sec","q":"À partir de quel âge peut-on suivre une formation aux premiers secours ?","a":"À partir de 10 ans."},{"id":"s23","cat":"sec","q":"Pourquoi faut-il pratiquer immédiatement une réanimation cardio-pulmonaire sur une victime en arrêt cardiaque ?","a":"Car les lésions du cerveau surviennent dès les premières minutes."},{"id":"s24","cat":"sec","q":"Lors d'un appel aux secours, pourquoi devez-vous attendre que votre correspondant vous autorise à raccrocher ?","a":"Car il peut vous conseiller ou vous guider dans les gestes à faire, ou à ne pas faire, jusqu'à l'arrivée des secours."},{"id":"s25","cat":"sec","q":"À quel moment pouvez-vous mettre fin à un appel avec les secours ?","a":"Uniquement lorsque votre correspondant vous invite à le faire."},{"id":"s26","cat":"sec","q":"Citez les trois manières d'évaluer l'état de conscience d'une victime.","a":"Lui poser des questions simples (« comment ça va ? », « vous m'entendez ? »), lui secouer doucement les épaules, lui prendre la main en lui demandant un geste simple (« serrez-moi la main »)."},{"id":"s27","cat":"sec","q":"Quels sont les risques pour une personne en perte de connaissance allongée sur le dos ?","a":"L'arrêt respiratoire et l'arrêt cardiaque."},{"id":"s28","cat":"sec","q":"Pourquoi ne faut-il pas laisser une personne en perte de connaissance allongée sur le dos ?","a":"Elle risque l'étouffement, par des liquides présents dans la gorge ou par la chute de la langue en arrière."},{"id":"s29","cat":"sec","q":"L'utilisation d'un DAE sur une victime qui n'est pas en arrêt cardiaque présente-t-elle un risque ?","a":"Non, car le défibrillateur ne se déclenche que si la victime est en arrêt cardiaque."},{"id":"s30","cat":"sec","q":"Qu'est-ce qu'une hémorragie ?","a":"Une perte de sang prolongée qui ne s'arrête pas : elle imbibe un mouchoir en quelques secondes."},{"id":"s31","cat":"sec","q":"Quels sont les risques pour une personne victime d'une hémorragie ?","a":"Une détresse circulatoire ou un arrêt cardiaque."},{"id":"s32","cat":"sec","q":"Quels sont les signes d'un arrêt cardiaque ?","a":"La victime ne répond pas, ne réagit pas et ne respire pas, ou présente une respiration anormale."},{"id":"s33","cat":"sec","q":"Qu'est-ce qu'un défibrillateur automatisé externe (DAE) ?","a":"Un appareil qui peut rétablir une activité cardiaque normale chez une victime en arrêt cardiaque."},{"id":"s34","cat":"sec","q":"Qu'est-ce qu'un arrêt cardiaque ?","a":"Le cœur ne fonctionne plus ou fonctionne de façon anarchique."},{"id":"s35","cat":"sec","q":"Quel est le risque principal d'un arrêt cardiaque sans intervention des secours ?","a":"La mort de la victime, qui survient en quelques minutes."}],"fiches":[["i1","q1","s1"],["e1","q2","s2"],["i2","q3","s3"],["e2","q4","s4"],["i3","q5","s5"],["e3","q6","s6"],["i4","q7","s7"],["e4","q8","s8"],["i5","q9","s9"],["e5","q10","s10"],["i6","q11","s11"],["e6","q12","s12"],["i7","q13","s13"],["e7","q14","s14"],["i8","q15","s15"],["e8","q16","s16"],["i9","q17","s17"],["e9","q18","s18"],["i10","q19","s19"],["e10","q20","s8"],["i11","q21","s20"],["e11","q22","s21"],["i12","q23","s22"],["e12","q24","s23"],["i13","q25","s13"],["e13","q26","s19"],["i14","q27","s24"],["e14","q28","s25"],["i15","q29","s26"],["e15","q30","s27"],["i16","q18","s2"],["e16","q31","s7"],["i17","q32","s4"],["e17","q11","s9"],["i18","q33","s28"],["e18","q22","s29"],["i19","q34","s14"],["e19","q35","s1"],["i20","q36","s3"],["e20","q37","s15"],["i21","q9b","s30"],["e21","q38","s31"],["i22","q39","s32"],["e22","q40","s33"],["i23","q41","s16"],["e23","q42","s24"],["i24","q43","s34"],["e24","q44","s35"],["i25","q45","s27"],["e1","q46","s23"],["i26","q47","s20"],["e30","q48","s25"],["i27","q49","s35"],["e31","q50","s17"],["i13","q25","s12"],["e28","q51","s26"],["i28","q52","s10"],["e29","q53","s21"],["i29","q54","s11"],["e26","q55","s29"],["i30","q56","s5"],["e26","q57","s30"],["i31","q35","s34"],["e25","q58","s31"],["i1","q1","s1"],["e27","q59","s33"],["i2","q3","s3"],["e2","q4","s4"],["i3","q5","s5"],["e4","q8","s8"],["i4","q7","s7"],["e6","q12","s12"],["i7","q13","s13"],["e7","q14","s14"],["i8","q15","s15"],["e9","q18","s18"],["i9","q17","s17"],["e10","q20","s8"],["i11","q21","s20"],["e11","q22","s21"],["i13","q25","s13"],["e13","q26","s19"],["i14","q27","s24"],["e16","q31","s7"],["i16","q18","s2"],["e19","q35","s1"],["i19","q34","s14"],["e21","q38","s31"],["i20","q36","s3"],["e23","q42","s24"],["i22","q39","s32"],["e30","q48","s25"],["i25","q45","s27"],["e31","q50","s17"],["i26","q47","s20"],["e28","q51","s26"],["i29","q54","s11"],["e29","q53","s21"],["i31","q35","s34"],["e27","q59","s33"]]};
+var QITEMS = QB.items, FICHES = QB.fiches, QMAP = {}, QFICHES = {};
+QITEMS.forEach(function(i){ QMAP[i.id]=i; QFICHES[i.id]=[]; });
+FICHES.forEach(function(f,idx){ f.forEach(function(id){ if(QFICHES[id].indexOf(idx+1)<0) QFICHES[id].push(idx+1); }); });
+var QCATS = {
+  int:{name:"Vérification intérieure", short:"Intérieure"},
+  ext:{name:"Vérification extérieure", short:"Extérieure"},
+  qser:{name:"Sécurité routière (QSER)", short:"Sécurité routière"},
+  sec:{name:"Premiers secours", short:"Premiers secours"}
+};
+var QLV = [{k:0,name:"À revoir",cls:"l0"},{k:1,name:"Presque sûr",cls:"l1"},{k:2,name:"Maîtrisé",cls:"l2"}];
+var QLAB = ["maîtrisées","presque sûres","à revoir","pas encore vues"];
+
+
+/* ---------- Utilitaires ---------- */
+function $(s,r){ return (r||document).querySelector(s); }
+function $$(s,r){ return Array.prototype.slice.call((r||document).querySelectorAll(s)); }
+function esc(s){ return String(s).replace(/[&<>"']/g,function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+function pad(n){ return String(n).length<2?'0'+n:String(n); }
+function ymd(d){ return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate()); }
+function today(){ return ymd(new Date()); }
+function daysBetween(a,b){ return Math.round((new Date(b+'T00:00:00')-new Date(a+'T00:00:00'))/864e5); }
+function addDays(d,n){ var x=new Date(d+'T00:00:00'); x.setDate(x.getDate()+n); return ymd(x); }
+function daysAgo(n){ var d=new Date(); d.setDate(d.getDate()-n); return ymd(d); }
+function fmtDate(s,long){
+  var d=new Date(s+'T00:00:00');
+  if(isNaN(d)) return s;
+  return d.toLocaleDateString('fr-FR', long?{day:'numeric',month:'long',year:'numeric'}:{day:'numeric',month:'short'});
+}
+function norm(s){ return String(s).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+function plural(n,s,p){ return n>1?p:s; }
+
+/* ---------- État et sauvegarde locale ---------- */
+function fresh(){
+  return {v:1, name:'', examDate:'', target:85, hidden:[], levels:{}, notes:{}, pins:{}, updated:{}, history:[], journal:[], ql:{}, jj:{done:{},a:'',b:'',c:''}, lastBackup:'', since:'', remindAfter:''};
+}
+function normalize(o){
+  var b=fresh();
+  if(!o||typeof o!=='object') return b;
+  b.name = typeof o.name==='string' ? o.name.slice(0,40) : '';
+  b.examDate = /^\d{4}-\d{2}-\d{2}$/.test(o.examDate||'') ? o.examDate : '';
+  var t=+o.target; b.target = (t>=50&&t<=100) ? Math.round(t/5)*5 : 85;
+  b.hidden = Array.isArray(o.hidden) ? o.hidden.filter(function(m){ return MOMENTS.indexOf(m)>=0; }) : [];
+  ['levels','notes','pins','updated'].forEach(function(k){
+    var src=o[k]; if(!src||typeof src!=='object') return;
+    Object.keys(src).forEach(function(id){
+      var n=+id; if(!(n>=1&&n<=ITEMS.length)) return;
+      var v=src[id];
+      if(k==='levels'){ if(v===0||v===1||v===2) b.levels[n]=v; }
+      else if(k==='notes'){ if(typeof v==='string'&&v) b.notes[n]=v.slice(0,600); }
+      else if(k==='pins'){ if(v) b.pins[n]=true; }
+      else if(typeof v==='string') b.updated[n]=v;
+    });
+  });
+  if(o.ql&&typeof o.ql==='object'){ Object.keys(o.ql).forEach(function(k){ var v=o.ql[k]; if(QMAP[k]&&(v===0||v===1||v===2)) b.ql[k]=v; }); }
+  var dre=/^\d{4}-\d{2}-\d{2}$/;
+  ['lastBackup','since','remindAfter'].forEach(function(k){ if(typeof o[k]==='string'&&dre.test(o[k])) b[k]=o[k]; });
+  if(o.jj&&typeof o.jj==='object'){
+    if(o.jj.done&&typeof o.jj.done==='object') Object.keys(o.jj.done).forEach(function(k){ if(/^[vm]\d+$/.test(k)&&o.jj.done[k]) b.jj.done[k]=true; });
+    ['a','b','c'].forEach(function(k){ if(typeof o.jj[k]==='string') b.jj[k]=o.jj[k].slice(0,300); });
+  }
+  b.history = Array.isArray(o.history) ? o.history.filter(function(h){ return h&&typeof h.d==='string'&&typeof h.p==='number'; }).map(function(h){ return {d:h.d,p:Math.max(0,Math.min(100,h.p))}; }).sort(function(a,c){ return a.d<c.d?-1:a.d>c.d?1:0; }).slice(-400) : [];
+  b.journal = Array.isArray(o.journal) ? o.journal.filter(function(j){ return j&&typeof j.d==='string'; }).map(function(j){
+    return {id:+j.id||Date.now(), d:j.d, dur:Math.max(0,+j.dur||0), feel:(+j.feel>=1&&+j.feel<=5)?+j.feel:0, good:String(j.good||'').slice(0,800), work:String(j.work||'').slice(0,800)};
+  }).slice(-300) : [];
+  return b;
+}
+var mem=null;
+function load(){
+  try{ var raw=localStorage.getItem(KEY); if(raw) return normalize(JSON.parse(raw)); }catch(e){}
+  return mem ? normalize(mem) : fresh();
+}
+var S = load();
+function hasData(){ return Object.keys(S.updated).length>0||Object.keys(S.ql).length>0||S.journal.length>0; }
+function persist(){
+  if(!S.since&&hasData()) S.since=today();
+  try{ localStorage.setItem(KEY, JSON.stringify(S)); }catch(e){ mem=JSON.parse(JSON.stringify(S)); }
+}
+try{ var th=localStorage.getItem(THEME_KEY); if(th==='light'||th==='dark') document.documentElement.setAttribute('data-theme',th); }catch(e){}
+
+/* ---------- Calculs ---------- */
+function active(){ return ITEMS.filter(function(i){ return S.hidden.indexOf(i.moment)<0; }); }
+function stats(list){
+  var c=[0,0,0,0];
+  list.forEach(function(i){ var l=S.levels[i.id]; c[l===undefined?3:l]++; });
+  var n=list.length;
+  return {c:c, n:n, pct:n?(c[1]+2*c[2])/(2*n)*100:0};
+}
+function momentStat(m){
+  var l=ITEMS.filter(function(i){ return i.moment===m; });
+  var s=stats(l);
+  s.touched=l.some(function(i){ return S.updated[i.id]!==undefined; });
+  return s;
+}
+function snapshot(){
+  var st=stats(active()), d=today(), e={d:d, p:Math.round(st.pct*10)/10}, h=S.history;
+  if(h.length&&h[h.length-1].d===d) h[h.length-1]=e; else h.push(e);
+  if(h.length>400) h.splice(0,h.length-400);
+}
+function setLevel(id,k){
+  if(S.levels[id]===k){ delete S.levels[id]; delete S.updated[id]; }
+  else { S.levels[id]=k; S.updated[id]=today(); }
+  snapshot(); persist();
+}
+
+/* ---------- Composants HTML ---------- */
+function stackBar(c,lab){
+  lab=lab||['automatisés','en progrès','à travailler','non évalués'];
+  var seg=[[2,c[2]],[1,c[1]],[0,c[0]],['n',c[3]]];
+  return '<div class="stack" role="img" aria-label="'+c[2]+' '+lab[0]+', '+c[1]+' '+lab[1]+', '+c[0]+' '+lab[2]+', '+c[3]+' '+lab[3]+'">'+
+    seg.map(function(s){ return s[1]?'<i class="s'+s[0]+'" style="flex:'+s[1]+'"></i>':''; }).join('')+'</div>';
+}
+function legendHTML(c,links){
+  var defs=[[2,c[2],plural(c[2],'automatisé','automatisés'),'2'],[1,c[1],'en progrès','1'],[0,c[0],'à travailler','0'],['n',c[3],plural(c[3],'non évalué','non évalués'),'n']];
+  return '<ul class="legend">'+defs.map(function(d){
+    var inner='<i class="sw s'+d[0]+'"></i><span><b>'+d[1]+'</b> '+d[2]+'</span>';
+    return '<li>'+(links?'<button type="button" class="lg" data-action="goto-status" data-status="'+d[3]+'">'+inner+'</button>':'<span class="lg">'+inner+'</span>')+'</li>';
+  }).join('')+'</ul>';
+}
+function miniBar(s){
+  if(!s.n) return '<span class="bar"></span>';
+  return '<span class="bar" aria-hidden="true">'+[2,1,0].map(function(k){ return s.c[k]?'<i class="s'+k+'" style="width:'+(s.c[k]/s.n*100)+'%"></i>':''; }).join('')+'</span>';
+}
+function defsHTML(){
+  return '<ul class="defs">'+LV.map(function(v){ return '<li class="d'+v.k+'"><b>'+v.name+'</b>'+v.help+'</li>'; }).join('')+'</ul>';
+}
+function gauge(pct,target){
+  var cx=160, cy=160, r=120, A0=150, SW=240;
+  function pt(a,rad){ var t=a*Math.PI/180; return [cx+rad*Math.cos(t), cy+rad*Math.sin(t)]; }
+  function arc(p1,p2,rad){
+    var a1=A0+SW*p1/100, a2=A0+SW*p2/100, s=pt(a1,rad), e=pt(a2,rad);
+    return 'M'+s[0].toFixed(2)+' '+s[1].toFixed(2)+' A'+rad+' '+rad+' 0 '+((a2-a1)>180?1:0)+' 1 '+e[0].toFixed(2)+' '+e[1].toFixed(2);
+  }
+  var b1=Math.max(0,Math.min(50,target-10));
+  var zones=[[0,b1,'z0'],[b1,target,'z1'],[target,100,'z2']].filter(function(z){ return z[1]>z[0]; });
+  var out='<svg viewBox="0 0 320 262" role="img" aria-label="Maîtrise globale : '+Math.round(pct)+' pour cent, objectif '+target+' pour cent">';
+  zones.forEach(function(z){ out+='<path class="g-zone '+z[2]+'" d="'+arc(z[0]+(z[0]>0?0.6:0),z[1]-(z[1]<100?0.6:0),r)+'"/>'; });
+  for(var v=0; v<=100; v+=10){
+    var a=A0+SW*v/100, p1=pt(a,133), p2=pt(a,v%50===0?146:141);
+    out+='<line class="g-tick" x1="'+p1[0].toFixed(1)+'" y1="'+p1[1].toFixed(1)+'" x2="'+p2[0].toFixed(1)+'" y2="'+p2[1].toFixed(1)+'"/>';
+  }
+  var l0=pt(A0,158), l1=pt(A0+SW,158);
+  out+='<text class="g-lab" x="'+(l0[0]-2).toFixed(1)+'" y="'+(l0[1]+8).toFixed(1)+'" text-anchor="middle">0</text>';
+  out+='<text class="g-lab" x="'+(l1[0]+2).toFixed(1)+'" y="'+(l1[1]+8).toFixed(1)+'" text-anchor="middle">100</text>';
+  var ta=A0+SW*target/100, t1=pt(ta,104), t2=pt(ta,138);
+  out+='<line class="g-target" x1="'+t1[0].toFixed(1)+'" y1="'+t1[1].toFixed(1)+'" x2="'+t2[0].toFixed(1)+'" y2="'+t2[1].toFixed(1)+'"/>';
+  var tip=pt(A0,100);
+  out+='<g class="needle" data-deg="'+(pct*SW/100).toFixed(1)+'" style="transform:rotate(0deg)"><line x1="160" y1="160" x2="'+tip[0].toFixed(1)+'" y2="'+tip[1].toFixed(1)+'"/></g>';
+  out+='<circle class="g-hub" cx="160" cy="160" r="11"/><circle class="g-hub2" cx="160" cy="160" r="4.5"/>';
+  out+='<text class="g-num" x="152" y="238" text-anchor="middle">'+Math.round(pct)+'</text><text class="g-pc" x="'+(152+String(Math.round(pct)).length*15+6)+'" y="238">%</text>';
+  return out+'</svg>';
+}
+var ICON_FLAG='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 21V4"/><path d="M6 4h12l-2.5 4L18 12H6"/></svg>';
+var ICON_PEN='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l1-4L16 5l3 3L8 19z"/></svg>';
+
+function rowHTML(i){
+  var l=S.levels[i.id], pinned=!!S.pins[i.id], note=S.notes[i.id]||'', open=openNotes[i.id]||!!note;
+  return '<li class="row" data-id="'+i.id+'" data-l="'+(l===undefined?'n':l)+'">'+
+    '<div class="row-body"><p class="row-meta"><span>'+esc(i.domain)+'</span><span>n°'+i.id+'</span></p><p class="row-text">'+esc(i.text)+'</p></div>'+
+    '<div class="row-ctl"><div class="seg" role="group" aria-label="Niveau pour : '+esc(i.text)+'">'+
+      LV.map(function(v){ return '<button type="button" class="lv '+v.cls+'" aria-pressed="'+(l===v.k)+'" data-action="level" data-id="'+i.id+'" data-k="'+v.k+'">'+v.name+'</button>'; }).join('')+
+    '</div>'+
+    '<button type="button" class="ico" aria-pressed="'+pinned+'" data-action="pin" data-id="'+i.id+'" title="Épingler pour la prochaine leçon" aria-label="Épingler pour la prochaine leçon">'+ICON_FLAG+'</button>'+
+    '<button type="button" class="ico'+(note?' has-note':'')+'" aria-expanded="'+open+'" data-action="note" data-id="'+i.id+'" title="Note personnelle" aria-label="Note personnelle">'+ICON_PEN+'</button></div>'+
+    '<div class="note"'+(open?'':' hidden')+'><label class="sr" for="n'+i.id+'">Note personnelle</label><textarea class="inp" id="n'+i.id+'" data-in="note" data-id="'+i.id+'" rows="2" maxlength="600" placeholder="Ce que t\'a dit ton moniteur, une astuce, une situation où tu as hésité…">'+esc(note)+'</textarea></div>'+
+  '</li>';
+}
+function momentStatHTML(m){
+  var s=momentStat(m);
+  return '<span>'+s.c[2]+' sur '+s.n+' automatisé'+(s.c[2]>1?'s':'')+'</span>'+miniBar(s);
+}
+function grpHTML(m,items){
+  return '<section class="grp" data-moment="'+esc(m)+'"><header class="grp-h"><h2>'+esc(m)+'</h2><div class="grp-stat">'+momentStatHTML(m)+'</div></header><ul class="rows">'+items.map(rowHTML).join('')+'</ul></section>';
+}
+function sumHTML(){
+  var st=stats(active());
+  return '<div class="sum-line"><span class="big">'+Math.round(st.pct)+' %</span><span class="t">de maîtrise, objectif '+S.target+' %</span></div>'+stackBar(st.c)+legendHTML(st.c,false);
+}
+
+/* ---------- Navigation et état des vues ---------- */
+var app=document.getElementById('app');
+var view='dash';
+var F={q:'',status:'all',moment:'all',pin:false};
+var J={feel:0};
+var EX={tab:'fiche',fiche:0,type:'all',q:'',showAns:false};
+var openNotes={};
+var DL=null;
+
+function toast(msg){
+  var t=$('#toast'); t.textContent=msg; t.classList.add('on');
+  clearTimeout(toast._t); toast._t=setTimeout(function(){ t.classList.remove('on'); },2800);
+}
+function applyDl(){ $$('[data-needs-dl]').forEach(function(b){ b.hidden=!DL; }); }
+function saveFile(name,data){
+  if(!DL){ toast("Le téléchargement n'est pas disponible ici. Utilise la copie manuelle."); return; }
+  DL.save({filename:name,data:data}).then(function(){ toast('Fichier enregistré.'); }).catch(function(e){
+    if(e&&e.code==='declined') return;
+    toast("Le téléchargement a échoué. Essaie la copie manuelle.");
+  });
+}
+function copyText(text){
+  function fallback(){
+    var ta=document.createElement('textarea'); ta.value=text; ta.setAttribute('readonly',''); ta.style.cssText='position:fixed;opacity:0;top:0';
+    document.body.appendChild(ta); ta.select();
+    var ok=false; try{ ok=document.execCommand('copy'); }catch(e){}
+    document.body.removeChild(ta); toast(ok?'Copié dans le presse-papiers.':'Copie impossible : sélectionne le texte à la main.');
+  }
+  if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(text).then(function(){ toast('Copié dans le presse-papiers.'); }).catch(fallback); }
+  else fallback();
+}
+function goto(v){ view=v; render(); window.scrollTo(0,0); }
+function render(){
+  $$('.nav [data-view]').forEach(function(b){ b.setAttribute('aria-current', b.dataset.view===view?'page':'false'); });
+  $$('.gear').forEach(function(b){ b.setAttribute('aria-current', view==='set'?'page':'false'); });
+  ({dash:vDash,list:vList,exam:vExam,plan:vPlan,prog:vProg,set:vSet,help:vHelp,legal:vLegal,jj:vJJ})[view]();
+  applyDl();
+}
+
+/* ---------- Vue : Bilan ---------- */
+function examLine(){
+  if(!S.examDate) return '<button type="button" class="link" data-action="nav" data-view="set">Ajouter la date de mon examen</button>';
+  var d=Math.round((new Date(S.examDate+'T00:00:00')-new Date(today()+'T00:00:00'))/864e5);
+  var ds=fmtDate(S.examDate,true);
+  var jl=' <button type="button" class="link" data-action="nav" data-view="jj">Préparer le jour J</button>';
+  if(d>14) return 'Examen le '+ds+', dans '+d+' jours.';
+  if(d>1) return 'Examen le '+ds+', dans '+d+' jours.'+jl;
+  if(d===1) return 'Examen demain, le '+ds+'.'+jl;
+  if(d===0) return "Examen aujourd'hui. Observe, analyse, agis."+jl;
+  return 'Examen passé le '+ds+'.';
+}
+function domainsPanel(list){
+  var m={};
+  list.forEach(function(i){ (m[i.domain]=m[i.domain]||[]).push(i); });
+  var rows=Object.keys(m).map(function(d){ var s=stats(m[d]); return {d:d,n:s.n,c:s.c,pct:s.pct}; })
+    .filter(function(r){ return r.n>=2 && r.c[3]<r.n && r.pct<S.target; })
+    .sort(function(a,b){ return a.pct-b.pct||b.n-a.n; }).slice(0,3);
+  if(!rows.length) return '';
+  return '<section class="panel"><h2>Domaines à surveiller</h2><p class="hint">Les gestes d\'une même famille, tous moments confondus.</p>'+
+    rows.map(function(r){
+      return '<div class="dom-row"><div>'+esc(r.d)+'<br><small>'+r.n+' réflexes</small></div>'+miniBar({c:r.c,n:r.n})+'<span class="pct">'+Math.round(r.pct)+' %</span></div>';
+    }).join('')+'</section>';
+}
+function vDash(){
+  var list=active(), st=stats(list), touched=Object.keys(S.updated).length>0;
+  var p=Math.round(st.pct), t=S.target, h1, sub, cta;
+  var need=Math.max(0,Math.ceil((t/100*2*st.n-(st.c[1]+2*st.c[2]))/2));
+  var lead=S.name?esc(S.name)+', ta':'Ta';
+  if(!touched){
+    h1="Fais le point sur tes réflexes avant l'examen.";
+    sub=st.n+' réflexes couvrent tout le parcours, du réglage du siège à la gestion du stress. Note chacun honnêtement : tu verras vite ce qui est solide et ce qui reste à travailler.';
+    cta='<button type="button" class="btn" data-action="nav" data-view="list">Commencer mon évaluation</button><button type="button" class="btn ghost" data-action="demo">Voir un exemple rempli</button><button type="button" class="link" data-action="nav" data-view="help">Comment ça marche ?</button>';
+  } else if(st.pct>=t){
+    h1="Objectif atteint : tes réflexes sont solides.";
+    sub=lead+' maîtrise globale est de '+p+' % pour un objectif de '+t+' %. Continue de les entretenir jusqu\'à l\'examen, surtout ceux encore « en progrès ».';
+    cta='<button type="button" class="btn" data-action="nav" data-view="plan">Préparer ma prochaine leçon</button><button type="button" class="btn ghost" data-action="nav" data-view="list">Ouvrir ma checklist</button>';
+  } else {
+    h1='Il te reste environ '+need+' '+plural(need,'réflexe','réflexes')+' à automatiser.';
+    sub=lead+' maîtrise globale est de '+p+' % pour un objectif de '+t+' %.'+(st.c[3]?' '+st.c[3]+' '+plural(st.c[3],'réflexe n\'est','réflexes ne sont')+' pas encore évalué'+(st.c[3]>1?'s':'')+'.':'');
+    cta='<button type="button" class="btn" data-action="nav" data-view="plan">Préparer ma prochaine leçon</button><button type="button" class="btn ghost" data-action="nav" data-view="list">Continuer ma checklist</button>';
+  }
+  var focus=list.filter(function(i){ return S.pins[i.id]&&S.levels[i.id]!==2; }), sugg=false;
+  if(!focus.length){ focus=list.filter(function(i){ return S.levels[i.id]===0; }).slice(0,5); sugg=true; }
+  else focus=focus.slice(0,6);
+  var lesson;
+  if(focus.length){
+    lesson='<p class="hint">'+(sugg?'Suggestion : tes premiers points à travailler. Épingle ceux que tu veux voir avec ton moniteur.':'Les réflexes que tu as épinglés.')+'</p><ul class="lesson">'+
+      focus.map(function(i){ return '<li><small>'+esc(i.moment)+', '+esc(i.domain)+'</small>'+esc(i.text)+'</li>'; }).join('')+'</ul>';
+  } else {
+    lesson='<p class="hint">'+(touched?'Aucun point à travailler pour le moment.':'Évalue quelques réflexes : tes priorités apparaîtront ici.')+'</p>';
+  }
+  var route=MOMENTS.filter(function(m){ return S.hidden.indexOf(m)<0; }).map(function(m){
+    var s=momentStat(m), col='';
+    if(s.touched) col=s.pct>=t?'var(--c2)':(s.pct>=50?'var(--c1)':'var(--c0)');
+    return '<li><button type="button" class="stop" data-action="goto-moment" data-moment="'+esc(m)+'" aria-label="'+esc(m)+' : '+s.c[2]+' sur '+s.n+' automatisés, ouvrir dans la checklist">'+
+      '<span class="node'+(s.touched?' on':'')+'"'+(col?' style="--nc:'+col+'"':'')+'></span><span>'+esc(m)+'</span>'+miniBar(s)+'<span class="stop-n">'+s.c[2]+'/'+s.n+'</span></button></li>';
+  }).join('');
+  app.innerHTML=
+    backupBanner()+'<section class="hero"><div class="cluster">'+gauge(st.pct,t)+'<p class="g-cap"><i class="g-key"></i>Objectif '+t+' %</p></div>'+
+    '<div class="hero-txt"><h1>'+h1+'</h1><p class="lede">'+sub+'</p>'+
+    (touched?stackBar(st.c)+legendHTML(st.c,true):defsHTML())+
+    '<div class="cta-row">'+cta+'</div><p class="exam" style="margin-top:14px">'+examLine()+'</p></div></section>'+
+    '<div class="cols"><section class="panel"><h2>Ton parcours</h2><p class="hint">Un arrêt par moment de l\'examen. Clique sur un arrêt pour voir le détail.</p><ul class="route">'+route+'</ul></section>'+
+    '<div class="col"><section class="panel"><h2>À travailler à la prochaine leçon</h2>'+lesson+
+    '<button type="button" class="btn ghost small" data-action="nav" data-view="plan">Ouvrir le plan de travail</button></section>'+qDashPanel()+(touched?domainsPanel(list):'')+'</div></div>';
+  requestAnimationFrame(function(){ requestAnimationFrame(function(){
+    var n=$('.needle'); if(n) n.style.transform='rotate('+n.getAttribute('data-deg')+'deg)';
+  }); });
+}
+
+/* ---------- Vue : Checklist ---------- */
+function matches(i){
+  var l=S.levels[i.id];
+  if(F.status!=='all'){
+    if(F.status==='n'){ if(l!==undefined) return false; }
+    else if(l!==+F.status) return false;
+  }
+  if(F.moment!=='all'&&i.moment!==F.moment) return false;
+  if(F.pin&&!S.pins[i.id]) return false;
+  if(F.q&&norm(i.text+' '+i.domain+' '+i.moment).indexOf(norm(F.q))<0) return false;
+  return true;
+}
+function renderList(){
+  var its=active().filter(matches), el=$('#list');
+  if(!its.length){
+    el.innerHTML='<div class="empty"><p>Aucun réflexe ne correspond à ces filtres.</p><button type="button" class="btn ghost small" data-action="reset-filters">Effacer les filtres</button></div>';
+    return;
+  }
+  var by={}; its.forEach(function(i){ (by[i.moment]=by[i.moment]||[]).push(i); });
+  el.innerHTML=MOMENTS.filter(function(m){ return by[m]; }).map(function(m){ return grpHTML(m,by[m]); }).join('');
+}
+function chipsHTML(){
+  var defs=[['all','Tous'],['n','Non évalués'],['0','À travailler'],['1','En progrès'],['2','Automatisés']];
+  return defs.map(function(d){ return '<button type="button" class="chip" data-action="status" data-status="'+d[0]+'" aria-pressed="'+(F.status===d[0])+'">'+d[1]+'</button>'; }).join('')+
+    '<button type="button" class="chip" data-action="pinfilter" aria-pressed="'+F.pin+'">Épinglés</button>';
+}
+function vList(){
+  var opts='<option value="all">Tous les moments</option>'+MOMENTS.filter(function(m){ return S.hidden.indexOf(m)<0; }).map(function(m){ return '<option value="'+esc(m)+'"'+(F.moment===m?' selected':'')+'>'+esc(m)+'</option>'; }).join('');
+  app.innerHTML=
+    '<div class="page-head"><h1>Ma checklist</h1><p class="lede">Pour chaque réflexe, choisis le niveau qui te ressemble aujourd\'hui. Reclique sur le niveau choisi pour l\'effacer.</p>'+defsHTML()+'</div>'+
+    '<div class="sumbar" id="sum">'+sumHTML()+'</div>'+
+    '<div class="filters"><div class="field"><label for="q">Rechercher</label><input class="inp" id="q" type="search" value="'+esc(F.q)+'" placeholder="Ex. : angle mort, giratoire…" autocomplete="off"></div>'+
+    '<div class="field"><label for="f-moment">Moment</label><select class="inp" id="f-moment">'+opts+'</select></div></div>'+
+    '<div class="chips" id="chips" style="margin-top:12px">'+chipsHTML()+'</div><div id="list"></div>';
+  renderList();
+}
+function refreshRow(id){
+  $$('.row[data-id="'+id+'"]').forEach(function(li){
+    var l=S.levels[id]; li.setAttribute('data-l', l===undefined?'n':l);
+    $$('.lv',li).forEach(function(b){ b.setAttribute('aria-pressed', String(+b.dataset.k===l)); });
+  });
+  $$('.grp[data-moment]').forEach(function(g){ $('.grp-stat',g).innerHTML=momentStatHTML(g.dataset.moment); });
+  var sum=$('#sum'); if(sum) sum.innerHTML=sumHTML();
+}
+
+/* ---------- Vue : Plan de travail ---------- */
+function todoList(){ return active().filter(function(i){ var l=S.levels[i.id]; return l===0||l===1; }); }
+function ficheText(){
+  var todo=todoList(), pin=todo.filter(function(i){ return S.pins[i.id]; }), rest=todo.filter(function(i){ return !S.pins[i.id]; });
+  function line(i){ return '[ ] '+i.moment+' / '+i.domain+' : '+i.text+(S.levels[i.id]===1?' (en progrès)':'')+(S.notes[i.id]?'\n      Note : '+S.notes[i.id]:''); }
+  var out=['CAP PERMIS - FICHE DE LEÇON','Date : '+fmtDate(today(),true)+(S.name?'  |  '+S.name:''),''];
+  out.push('À AVOIR EN TÊTE PENDANT LA LEÇON ('+pin.length+')');
+  out=out.concat(pin.length?pin.map(line):['(aucun réflexe épinglé)']);
+  out.push('','RESTE À AUTOMATISER ('+rest.length+')');
+  MOMENTS.forEach(function(m){ var a=rest.filter(function(i){ return i.moment===m; }); if(a.length){ out.push('',m.toUpperCase()); a.forEach(function(i){ out.push(line(i)); }); } });
+  return out.join('\n');
+}
+function vPlan(){
+  var todo=todoList(), unk=active().filter(function(i){ return S.levels[i.id]===undefined; }).length;
+  var pin=todo.filter(function(i){ return S.pins[i.id]; }), rest=todo.filter(function(i){ return !S.pins[i.id]; });
+  var by={}; rest.forEach(function(i){ (by[i.moment]=by[i.moment]||[]).push(i); });
+  var html='<div class="page-head"><h1>Plan de travail</h1><p class="lede">Prépare ta prochaine leçon : épingle 3 à 5 réflexes à travailler avec ton moniteur, puis garde la fiche avec toi.</p>'+
+    '<div class="tools no-print"><button type="button" class="btn" data-action="fiche-dl" data-needs-dl hidden>Télécharger ma fiche de leçon</button><button type="button" class="btn ghost" data-action="fiche-copy">Copier la fiche</button><button type="button" class="btn ghost" data-action="print">Imprimer</button></div></div>';
+  if(unk){ html+='<div class="banner no-print"><span><b>'+unk+'</b> '+plural(unk,'réflexe n\'est','réflexes ne sont')+' pas encore '+plural(unk,'évalué','évalués')+'.</span><button type="button" class="btn ghost small" data-action="goto-status" data-status="n">Les évaluer</button></div>'; }
+  if(!todo.length){
+    html+='<div class="empty"><p>'+(unk===active().length?"Évalue d'abord quelques réflexes dans la checklist : ceux que tu classes « à travailler » ou « en progrès » arriveront ici.":"Rien à travailler : tous les réflexes évalués sont automatisés.")+'</p><button type="button" class="btn small" data-action="nav" data-view="list">Ouvrir la checklist</button></div>';
+  } else {
+    html+='<section class="grp"><header class="grp-h"><h2>À aborder à la prochaine leçon</h2><div class="grp-stat"><span>'+pin.length+' épinglé'+(pin.length>1?'s':'')+'</span></div></header>'+
+      (pin.length?'<ul class="rows">'+pin.map(rowHTML).join('')+'</ul>':'<p class="hint" style="padding:14px 0">Aucun réflexe épinglé. Utilise le drapeau sur un réflexe ci-dessous.</p>')+'</section>';
+    html+='<h2 style="margin-top:38px;font-size:1.9rem">Reste à automatiser</h2>'+MOMENTS.filter(function(m){ return by[m]; }).map(function(m){ return grpHTML(m,by[m]); }).join('');
+  }
+  app.innerHTML=html;
+}
+
+/* ---------- Vue : Évolution ---------- */
+function chartHTML(){
+  var h=S.history;
+  if(!h.length) return '<div class="empty"><p>Ta courbe démarre dès que tu évalues un premier réflexe.</p><button type="button" class="btn small" data-action="nav" data-view="list">Ouvrir la checklist</button></div>';
+  var W=720,H=300,L=46,R=18,T=18,B=40, iw=W-L-R, ih=H-T-B;
+  var ts=h.map(function(x){ return new Date(x.d+'T00:00:00').getTime(); }), t0=ts[0], t1=ts[ts.length-1];
+  function X(i){ return ts.length===1?L+iw/2:L+(t1===t0?0:(ts[i]-t0)/(t1-t0))*iw; }
+  function Y(v){ return T+ih-(v/100)*ih; }
+  var o='<svg class="chart" viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Courbe de maîtrise globale dans le temps">';
+  [0,25,50,75,100].forEach(function(v){ o+='<line class="grid" x1="'+L+'" x2="'+(W-R)+'" y1="'+Y(v)+'" y2="'+Y(v)+'"/><text class="ax" x="'+(L-8)+'" y="'+(Y(v)+4)+'" text-anchor="end">'+v+' %</text>'; });
+  o+='<line class="tg" x1="'+L+'" x2="'+(W-R)+'" y1="'+Y(S.target)+'" y2="'+Y(S.target)+'"/><text class="tgl" x="'+(W-R)+'" y="'+(Y(S.target)-6)+'" text-anchor="end">Objectif '+S.target+' %</text>';
+  if(h.length>1){
+    var pts=h.map(function(x,i){ return X(i).toFixed(1)+' '+Y(x.p).toFixed(1); });
+    o+='<path class="ar" d="M'+X(0).toFixed(1)+' '+Y(0)+' L'+pts.join(' L')+' L'+X(h.length-1).toFixed(1)+' '+Y(0)+' Z"/><path class="ln" d="M'+pts.join(' L')+'"/>';
+  }
+  h.forEach(function(x,i){ o+='<circle class="pt" cx="'+X(i).toFixed(1)+'" cy="'+Y(x.p).toFixed(1)+'" r="5"><title>'+fmtDate(x.d,true)+' : '+Math.round(x.p)+' %</title></circle>'; });
+  var idx=[]; if(h.length<=5){ h.forEach(function(_,i){ idx.push(i); }); } else { for(var k=0;k<5;k++){ var v=Math.round(k*(h.length-1)/4); if(idx.indexOf(v)<0) idx.push(v); } }
+  idx.forEach(function(i){ o+='<text class="ax" x="'+X(i).toFixed(1)+'" y="'+(H-12)+'" text-anchor="middle">'+fmtDate(h[i].d,false)+'</text>'; });
+  return o+'</svg>';
+}
+function vProg(){
+  var h=S.history, first=h[0], last=h[h.length-1];
+  var kpis='';
+  if(h.length){
+    var diff=Math.round(last.p-first.p);
+    kpis='<div class="kpis"><div class="kpi"><b>'+Math.round(first.p)+' %</b><span>au début, le '+fmtDate(first.d,false)+'</span></div><div class="kpi"><b>'+Math.round(last.p)+' %</b><span>en dernier, le '+fmtDate(last.d,false)+'</span></div>'+
+      (h.length>1?'<div class="kpi"><b>'+(diff>0?'+':'')+diff+' pts</b><span>d\'évolution</span></div>':'')+'</div>';
+  }
+  var rec=Object.keys(S.updated).map(function(id){ return {id:+id,d:S.updated[id],l:S.levels[id]}; })
+    .filter(function(x){ return x.l!==undefined&&ITEMS[x.id-1]; })
+    .sort(function(a,b){ return a.d<b.d?1:a.d>b.d?-1:a.id-b.id; }).slice(0,8);
+  var recent=rec.length?'<ul class="recent">'+rec.map(function(x){
+    var it=ITEMS[x.id-1], v=LV[x.l];
+    return '<li><time datetime="'+x.d+'">'+fmtDate(x.d,false)+'</time><span>'+esc(it.text)+'</span><span class="tag"><i class="s'+x.l+'"></i>'+v.name+'</span></li>';
+  }).join('')+'</ul>':'<p class="hint">Rien pour l\'instant.</p>';
+  var journal=S.journal.slice().sort(function(a,b){ return a.d<b.d?1:a.d>b.d?-1:b.id-a.id; });
+  app.innerHTML=
+    '<div class="page-head"><h1>Évolution</h1><p class="lede">Ta courbe se met à jour à chaque réflexe évalué. Note aussi tes séances pour garder la trace de ce qui bouge.</p></div>'+
+    '<section class="panel" style="margin-top:18px"><h2>Maîtrise globale</h2>'+kpis+chartHTML()+'</section>'+
+    '<div class="two"><section class="panel"><h2>Journal de conduite</h2><p class="hint">Après chaque leçon, quelques lignes suffisent.</p>'+
+    '<div class="form-grid"><div class="field"><label for="j-date">Date</label><input class="inp" id="j-date" type="date" value="'+today()+'"></div>'+
+    '<div class="field"><label for="j-dur">Durée en minutes</label><input class="inp" id="j-dur" type="number" min="0" max="600" step="5" placeholder="60"></div>'+
+    '<div class="field wide"><span id="feel-l">Comment ça s\'est passé ?</span><div class="feel" role="group" aria-labelledby="feel-l">'+
+      [1,2,3,4,5].map(function(n){ return '<button type="button" class="chip" aria-pressed="'+(J.feel===n)+'" data-action="feel" data-n="'+n+'">'+FEEL[n]+'</button>'; }).join('')+'</div></div>'+
+    '<div class="field wide"><label for="j-good">Ce qui s\'est bien passé</label><textarea class="inp" id="j-good" rows="2" maxlength="800"></textarea></div>'+
+    '<div class="field wide"><label for="j-work">À retravailler</label><textarea class="inp" id="j-work" rows="2" maxlength="800"></textarea></div>'+
+    '<div class="wide"><button type="button" class="btn" data-action="jadd">Ajouter la séance</button></div></div>'+
+    '<div style="margin-top:22px">'+(journal.length?journal.map(function(j){
+      return '<article class="entry"><div class="entry-h"><b>'+fmtDate(j.d,true)+'</b>'+(j.dur?'<span class="muted">'+j.dur+' min</span>':'')+(j.feel?'<span class="tag">'+FEEL[j.feel]+'</span>':'')+
+        '<button type="button" class="btn ghost small" data-action="jdel" data-id="'+j.id+'">Supprimer</button></div>'+
+        (j.good?'<p><span>Bien passé :</span> '+esc(j.good)+'</p>':'')+(j.work?'<p><span>À retravailler :</span> '+esc(j.work)+'</p>':'')+'</article>';
+    }).join(''):'<p class="hint">Aucune séance notée pour l\'instant.</p>')+'</div></section>'+
+    '<section class="panel"><h2>Derniers réflexes évalués</h2>'+recent+'</section></div>';
+}
+
+
+/* ---------- Vue : Questions de l'examen ---------- */
+function qstats(list){
+  var c=[0,0,0,0];
+  list.forEach(function(i){ var l=S.ql[i.id]; c[l===undefined?3:l]++; });
+  var n=list.length;
+  return {c:c, n:n, pct:n?(c[1]+2*c[2])/(2*n)*100:0};
+}
+function qLegendHTML(c){
+  var d=[[2,c[2],plural(c[2],'maîtrisée','maîtrisées')],[1,c[1],plural(c[1],'presque sûre','presque sûres')],[0,c[0],'à revoir'],['n',c[3],plural(c[3],'pas encore vue','pas encore vues')]];
+  return '<ul class="legend">'+d.map(function(x){ return '<li><span class="lg"><i class="sw s'+x[0]+'"></i><span><b>'+x[1]+'</b> '+x[2]+'</span></span></li>'; }).join('')+'</ul>';
+}
+function qSumHTML(){
+  var st=qstats(QITEMS);
+  var cats=['int','ext','qser','sec'].map(function(k){
+    var s=qstats(QITEMS.filter(function(i){ return i.cat===k; }));
+    return '<div class="qcat"><b>'+QCATS[k].name+'</b>'+miniBar(s)+'<small>'+s.c[2]+' sur '+s.n+' maîtrisées</small></div>';
+  }).join('');
+  return '<h2>Ta progression sur les questions</h2><div class="sum-line" style="margin-top:8px"><span class="big">'+st.c[2]+'</span><span class="t">questions maîtrisées sur '+st.n+' questions différentes</span></div>'+stackBar(st.c,QLAB)+qLegendHTML(st.c)+'<div class="qcats">'+cats+'</div>';
+}
+function refreshQSum(){ var el=$('#qsum'); if(el) el.innerHTML=qSumHTML(); }
+function qDashPanel(){
+  var st=qstats(QITEMS);
+  return '<section class="panel"><h2>Questions de l\'examen</h2><p class="hint">Vérification intérieure et extérieure, sécurité routière, premiers secours : les 100 fiches à connaître.</p>'+
+    '<div style="margin-top:12px">'+stackBar(st.c,QLAB)+'</div>'+qLegendHTML(st.c)+
+    '<div class="tools"><button type="button" class="btn ghost small" data-action="nav" data-view="exam">Tirer une fiche</button></div></section>';
+}
+function qLevelBtns(id){
+  var l=S.ql[id];
+  return '<div class="seg" role="group" aria-label="Ton niveau sur cette question">'+QLV.map(function(v){
+    return '<button type="button" class="lv '+v.cls+'" aria-pressed="'+(l===v.k)+'" data-action="qlevel" data-qid="'+id+'" data-k="'+v.k+'">'+v.name+'</button>';
+  }).join('')+'</div>';
+}
+function ansText(it){ return it.a?esc(it.a):"Pas de réponse détaillée dans la fiche : montre ou réalise l'action demandée."; }
+function qCardHTML(it,cur){
+  var l=S.ql[it.id], isV=(it.cat==='int'||it.cat==='ext');
+  var others=QFICHES[it.id].filter(function(n){ return n!==cur; });
+  return '<article class="qcard" data-qid="'+it.id+'" data-l="'+(l===undefined?'n':l)+'">'+
+    '<p class="q-text">'+esc(it.q)+'</p>'+
+    '<details class="ans"'+(EX.showAns?' open':'')+'><summary>'+(isV?'Voir ce qui est attendu':'Voir la réponse')+'</summary><div class="ans-body">'+ansText(it)+'</div></details>'+
+    '<div class="q-rate"><span class="hint">Où en es-tu ?</span>'+qLevelBtns(it.id)+'</div>'+
+    (others.length?'<p class="q-again">Cette question revient aussi dans '+plural(others.length,'la fiche','les fiches')+' '+others.join(', ')+'.</p>':'')+
+  '</article>';
+}
+function ficheType(n){ return QMAP[FICHES[n-1][0]].cat; }
+function ficheHTML(n){
+  var f=FICHES[n-1], vt=ficheType(n);
+  var steps=[['Vérification '+(vt==='int'?'intérieure':'extérieure'),f[0]],['Sécurité routière (QSER)',f[1]],['Premiers secours',f[2]]];
+  return '<div class="fiche-h"><h2>Fiche n°'+n+'</h2><span class="tag">'+QCATS[vt].name+'</span></div>'+
+    '<div class="fiche-tools no-print"><button type="button" class="btn ghost small" data-action="fiche-prev">Fiche précédente</button><button type="button" class="btn ghost small" data-action="fiche-next">Fiche suivante</button><button type="button" class="btn ghost small" data-action="toggle-ans">'+(EX.showAns?'Masquer les réponses':'Afficher les réponses')+'</button></div>'+
+    steps.map(function(st,i){ return '<section class="step"><h3 class="step-t"><span class="step-n">'+(i+1)+'</span>'+st[0]+'</h3>'+qCardHTML(QMAP[st[1]],n)+'</section>'; }).join('');
+}
+function showFiche(){
+  var out=$('#fiche-out'); if(!out) return;
+  out.innerHTML=EX.fiche?ficheHTML(EX.fiche):'<div class="empty"><p>Entre un numéro entre 1 et 100 pour afficher les trois questions de la fiche, comme le ferait l\'examinateur. Essaie d\'y répondre à voix haute avant de regarder les réponses.</p></div>';
+}
+function openFiche(n,scroll){
+  EX.fiche=n; var inp=$('#fiche-n'); if(inp) inp.value=n;
+  var err=$('#fiche-err'); if(err) err.textContent='';
+  showFiche();
+  if(scroll){ var o=$('#fiche-out'); if(o&&o.scrollIntoView) o.scrollIntoView({behavior:'smooth',block:'start'}); }
+}
+function randomFiche(){
+  var cand=[];
+  FICHES.forEach(function(f,i){ if(f.some(function(id){ return S.ql[id]!==2; })&&(i+1)!==EX.fiche) cand.push(i+1); });
+  if(!cand.length) for(var n=1;n<=100;n++) if(n!==EX.fiche) cand.push(n);
+  return cand[Math.floor(Math.random()*cand.length)];
+}
+function fichePane(){
+  return '<section class="panel fpick"><h2>Tirer une fiche</h2><p class="hint">Entre un numéro de 1 à 100 (la fiche 100 correspond à la fiche « 00 » du PDF). Tu obtiens les trois questions posées : une vérification, une question de sécurité routière et une question de premiers secours.</p>'+
+    '<div class="pick-row"><div class="field"><label for="fiche-n">Numéro de fiche</label><input class="inp" id="fiche-n" type="number" min="1" max="100" step="1" inputmode="numeric" placeholder="Ex. : 37"'+(EX.fiche?' value="'+EX.fiche+'"':'')+'></div>'+
+    '<button type="button" class="btn" data-action="fiche-open">Afficher les 3 questions</button><button type="button" class="btn ghost" data-action="fiche-random">Fiche au hasard</button></div>'+
+    '<p class="err" id="fiche-err" role="alert"></p></section><div id="fiche-out"></div>';
+}
+function matchesFiche(n){
+  var f=FICHES[n-1];
+  if(EX.type!=='all'&&ficheType(n)!==EX.type) return false;
+  if(EX.q){
+    var txt=n+' '+f.map(function(id){ return QMAP[id].q+' '+QMAP[id].a; }).join(' ');
+    if(norm(txt).indexOf(norm(EX.q))<0) return false;
+  }
+  return true;
+}
+function dotHTML(id){
+  var l=S.ql[id], names=['à revoir','presque sûre','maîtrisée'];
+  return '<i class="sw s'+(l===undefined?'n':l)+'" aria-hidden="true"></i><span class="sr">'+(l===undefined?'pas encore vue':names[l])+'</span>';
+}
+function renderFicheList(){
+  var el=$('#ex-list'); if(!el) return;
+  var nums=[]; for(var n=1;n<=100;n++) if(matchesFiche(n)) nums.push(n);
+  var c=$('#ex-count'); if(c) c.textContent=nums.length+' '+plural(nums.length,'fiche affichée','fiches affichées')+' sur 100.';
+  if(!nums.length){ el.innerHTML='<div class="empty"><p>Aucune fiche ne correspond à ta recherche.</p></div>'; return; }
+  var labels=['Vérification','Sécurité routière','Premiers secours'];
+  el.innerHTML=nums.map(function(n){
+    var f=FICHES[n-1], vt=ficheType(n);
+    return '<article class="fiche-row"><header class="fiche-row-h"><span class="fnum">'+n+'</span><span class="tag">'+QCATS[vt].name+'</span><button type="button" class="link" data-action="fiche-go" data-n="'+n+'">M\'entraîner sur cette fiche</button></header>'+
+      f.map(function(id,i){
+        var it=QMAP[id], isV=i===0;
+        return '<div class="fq"><small>'+dotHTML(id)+labels[i]+'</small><p class="q-text">'+esc(it.q)+'</p><details class="ans"'+(EX.showAns?' open':'')+'><summary>'+(isV?'Voir ce qui est attendu':'Voir la réponse')+'</summary><div class="ans-body">'+ansText(it)+'</div></details></div>';
+      }).join('')+'</article>';
+  }).join('');
+}
+function typeChips(){
+  return [['all','Toutes'],['int','Vérification intérieure'],['ext','Vérification extérieure']].map(function(d){
+    return '<button type="button" class="chip" data-action="ex-type" data-type="'+d[0]+'" aria-pressed="'+(EX.type===d[0])+'">'+d[1]+'</button>';
+  }).join('');
+}
+function listPane(){
+  return '<div class="filters"><div class="field"><label for="ex-q">Rechercher dans les 100 fiches</label><input class="inp" id="ex-q" type="search" value="'+esc(EX.q)+'" placeholder="Ex. : huile, brouillard, hémorragie…" autocomplete="off"></div></div>'+
+    '<div class="chips" id="ex-types" style="margin-top:12px">'+typeChips()+'</div>'+
+    '<div class="tools"><button type="button" class="btn ghost small" data-action="toggle-ans">'+(EX.showAns?'Masquer les réponses':'Afficher les réponses')+'</button></div>'+
+    '<p class="hint count-line" id="ex-count"></p><div id="ex-list"></div>';
+}
+function renderExBody(){
+  $$('#ex-tabs [data-tab]').forEach(function(b){ b.setAttribute('aria-pressed',String(b.dataset.tab===EX.tab)); });
+  var el=$('#ex-body');
+  if(EX.tab==='fiche'){ el.innerHTML=fichePane(); showFiche(); }
+  else { el.innerHTML=listPane(); renderFicheList(); }
+}
+function vExam(){
+  app.innerHTML=
+    '<div class="page-head"><h1>Questions de l\'examen</h1><p class="lede">Chaque fiche réunit trois questions : une vérification (intérieure ou extérieure), une question de sécurité routière et une question de premiers secours. Tire une fiche par son numéro, ou parcours les 100.</p></div>'+
+    '<div class="chips tabs" id="ex-tabs" role="group" aria-label="Affichage"><button type="button" class="chip" data-action="ex-tab" data-tab="fiche" aria-pressed="true">Tirer une fiche</button><button type="button" class="chip" data-action="ex-tab" data-tab="list" aria-pressed="false">Voir les 100 fiches</button></div>'+
+    '<div id="ex-body"></div>'+
+    '<section class="panel" id="qsum" style="margin-top:34px">'+qSumHTML()+'</section>'+
+    '<p class="hint" style="margin-top:20px">Fiches reprises du document « Les 100 questions du permis ». Les 100 fiches reprennent plusieurs fois les mêmes questions : le suivi porte sur les '+QITEMS.length+' questions différentes. Vérifie avec ton école de conduite que le contenu est à jour pour ta date d\'examen.</p>';
+  renderExBody();
+}
+
+
+/* ---------- Vue : Mode d'emploi ---------- */
+function vHelp(){
+  var steps=[
+    ["Fais le point sur tes réflexes",
+     "Ouvre <b>Checklist</b>. Pour chaque réflexe de conduite, touche le niveau qui te ressemble aujourd'hui. Sois honnête : personne d'autre ne voit tes réponses. Un doute ? Choisis « En progrès ». Pour effacer un choix, touche-le une deuxième fois. Le crayon sert à écrire une note.",
+     "list","Ouvrir la checklist"],
+    ["Prépare ta prochaine leçon",
+     "Sur un réflexe, touche le <b>drapeau</b> pour l'épingler. Choisis 3 à 5 réflexes maximum : ce sont ceux à travailler avec ton moniteur. Ils s'affichent dans <b>Plan</b>, avec la liste de tout ce qui reste à automatiser. Tu peux copier ou télécharger la fiche pour l'avoir sous la main.",
+     "plan","Ouvrir le plan de travail"],
+    ["Suis ta progression",
+     "Le <b>Bilan</b> montre une jauge : plus l'aiguille monte, plus tes réflexes sont solides. Le repère blanc est ton objectif. Dans <b>Évolution</b>, la courbe se met à jour toute seule. Après chaque leçon, ajoute quelques lignes au journal : ce qui s'est bien passé et ce qu'il faut retravailler.",
+     "dash","Voir mon bilan"],
+    ["Révise les questions de l'examen",
+     "Ouvre <b>Questions</b> et tape un numéro entre 1 et 100. Tu vois les 3 questions de la fiche, comme avec l'examinateur. Réponds à voix haute, puis touche « Voir la réponse ». Note ensuite ton niveau : À revoir, Presque sûr ou Maîtrisé. Tu peux aussi parcourir les 100 fiches.",
+     "exam","Ouvrir les questions"],
+    ["Garde tes données en sécurité",
+     "Tout est enregistré sur ton appareil, dans ton navigateur. Pense à faire une sauvegarde de temps en temps dans <b>Réglages</b> : c'est ce qui te protège si tu changes de téléphone ou si tu vides ton navigateur. Un rappel s'affiche sur le Bilan si tu n'as pas sauvegardé depuis 7 jours.",
+     "set","Ouvrir les réglages"]
+  ];
+  app.innerHTML=
+    '<div class="help-wrap"><div class="page-head"><h1>Mode d\'emploi</h1><p class="lede">Cap Permis t\'aide à voir ce que tu maîtrises déjà et ce qu\'il te reste à travailler avant l\'examen de conduite. Il suffit de suivre ces 5 étapes.</p></div>'+
+    steps.map(function(st,i){
+      return '<section class="step help-step"><h2 class="step-t"><span class="step-n">'+(i+1)+'</span>'+st[0]+'</h2><p>'+st[1]+'</p><button type="button" class="btn ghost" data-action="nav" data-view="'+st[2]+'">'+st[3]+'</button></section>';
+    }).join('')+
+    '<section class="step"><h2 class="step-t">Les 3 niveaux</h2>'+defsHTML()+'</section>'+
+    '<section class="step rhythm"><h2 class="step-t">Le bon rythme</h2><p style="margin-top:10px;max-width:62ch">Fais l\'évaluation complète une fois. Ensuite, après chaque leçon, prends 5 minutes : mets à jour quelques réflexes, épingle ceux de la prochaine fois et note ta séance. Réserve les questions de l\'examen à quelques minutes par jour.</p></section>'+
+    '<section class="step"><h2 class="step-t">Bon à savoir</h2><ul class="tips">'+
+      '<li><b>Tu passes ton permis en boîte automatique ?</b>Dans Réglages, touche « Je passe en boîte automatique » : les réflexes de boîte manuelle disparaissent du suivi.</li>'+
+      '<li><b>L\'examen approche ?</b>Ouvre <b>Jour J</b> : liste de la veille et du matin, rappels pour l\'épreuve, respiration et exercices de confiance.</li>'+
+      '<li><b>Tu veux un compte à rebours ?</b>Ajoute la date de ton examen dans Réglages : elle s\'affiche sur le Bilan.</li>'+
+      '<li><b>Tu veux voir à quoi ça ressemble rempli ?</b>Dans Réglages, « Charger un exemple rempli ». Tu peux tout effacer ensuite.</li>'+
+      '<li><b>Ton objectif ?</b>Il est réglable dans Réglages. Viser 85 % ou plus avant de passer l\'examen est un bon repère.</li>'+
+      '<li><b>Cet outil remplace-t-il ton moniteur ?</b>Non. Il t\'aide à te préparer et à poser les bonnes questions à ton moniteur.</li>'+
+    '</ul></section></div>';
+}
+
+
+/* ---------- Vue : Mentions légales ---------- */
+/* Le texte vient du fichier mentions-legales.html (même dossier) quand le site est hébergé.
+   Une copie intégrée s'affiche tout de suite, et sert de secours si le fichier est introuvable. */
+var LEGAL_FALLBACK = "<p class=\"upd\">Dernière mise à jour : 19 septembre 2026.<\/p>\n\n    <h2>Éditeur du site<\/h2>\n    <p>Cap Permis est un site personnel, gratuit et sans but lucratif, édité à titre non professionnel par son auteur. Le directeur de la publication est l'auteur du site.<\/p>\n    <p>Contact : <a href=\"mailto:devby.fou@gmail.com\">devby.fou@gmail.com<\/a><\/p>\n\n    <h2>Hébergement<\/h2>\n    <p>Le site est hébergé par GitHub Pages, un service de&nbsp;:<\/p>\n    <address>GitHub, Inc.<br>88 Colin P. Kelly Jr. Street<br>San Francisco, CA 94107<br>États-Unis<br><a href=\"https://pages.github.com\" rel=\"noopener noreferrer\">pages.github.com<\/a><\/address>\n\n    <h2>Objet du site et avertissement<\/h2>\n    <p>Cap Permis est un outil d'auto-évaluation qui aide les candidats à suivre leur préparation à l'examen pratique du permis de conduire.<\/p>\n    <p>Il ne remplace ni la formation dispensée par une école de conduite, ni les conseils d'un moniteur. Il ne garantit en aucun cas la réussite à l'examen.<\/p>\n    <p>Les contenus (réflexes de conduite, questions de l'examen, réponses) peuvent comporter des erreurs ou ne plus être à jour, par exemple si la réglementation ou le déroulement de l'épreuve évoluent. Vérifie toujours les informations auprès de ton école de conduite ou des sources officielles.<\/p>\n\n    <h2>Propriété intellectuelle<\/h2>\n    <p>© 2026 Cap Permis. Tous droits réservés.<\/p>\n    <p>La structure, le design, le code et les textes du site appartiennent à l'auteur, sauf mention contraire. Toute reproduction ou réutilisation en dehors d'un usage personnel nécessite l'accord préalable de l'auteur.<\/p>\n    <p>Les fiches de questions de l'examen sont reprises et reformulées à partir du document de révision « Les 100 questions du permis ». Les droits sur ce document restent la propriété de leurs titulaires. Si vous êtes titulaire de droits et souhaitez une modification ou un retrait, écrivez à l'adresse de contact ci-dessus.<\/p>\n\n    <h2>Données personnelles et cookies<\/h2>\n    <p>Cap Permis ne collecte aucune donnée personnelle sur un serveur et ne transmet rien à l'auteur. Il n'utilise ni cookies publicitaires, ni outil de mesure d'audience.<\/p>\n    <p>Pour fonctionner, le site enregistre dans le stockage local du navigateur (localStorage), uniquement sur l'appareil de l'utilisateur, les informations suivantes&nbsp;:<\/p>\n    <ul>\n      <li>les niveaux choisis pour les réflexes et les questions, les notes personnelles, le journal de conduite et la courbe d'évolution&nbsp;;<\/li>\n      <li>les cases cochées et les textes de la page Jour J, ainsi que la date de la dernière sauvegarde&nbsp;;<\/li>\n      <li>les réglages (prénom facultatif, date d'examen, objectif, réflexes suivis)&nbsp;;<\/li>\n      <li>le thème clair ou sombre.<\/li>\n    <\/ul>\n    <p>Ces informations restent sur l'appareil. L'utilisateur peut les effacer à tout moment avec le bouton « Tout effacer » de la page Réglages, ou en vidant les données de son navigateur. Le site peut être utilisé par des mineurs : il ne demande aucune information obligatoire.<\/p>\n    <p>Pour afficher les pages, le site charge des polices de caractères depuis Google Fonts (Google). À cette occasion, l'adresse IP du visiteur peut être transmise à Google. Par ailleurs, l'hébergeur GitHub peut enregistrer des données techniques de connexion (comme l'adresse IP) selon sa propre politique de confidentialité, consultable sur github.com.<\/p>\n    <p>Pour toute question sur ces points, écrivez à <a href=\"mailto:devby.fou@gmail.com\">devby.fou@gmail.com<\/a>.<\/p>\n\n    <h2>Responsabilité<\/h2>\n    <p>L'auteur s'efforce de fournir des informations exactes mais ne peut être tenu responsable des erreurs, des omissions, ni des conséquences de l'utilisation du site ou de son indisponibilité.<\/p>\n\n    <h2>Droit applicable<\/h2>\n    <p>Les présentes mentions légales sont soumises au droit français.<\/p>";
+function vLegal(){
+  app.innerHTML='<div class="help-wrap legal"><div class="page-head"><h1>Mentions légales</h1></div><div class="legal-body" id="legal-body">'+LEGAL_FALLBACK+'</div></div>';
+  try{
+    fetch('mentions-legales.html',{cache:'no-cache'}).then(function(r){ if(!r.ok) throw new Error('http'); return r.text(); }).then(function(txt){
+      var doc=new DOMParser().parseFromString(txt,'text/html'), node=doc.getElementById('mentions-content');
+      if(!node||!node.textContent.trim()) return;
+      $$('script,iframe,object,embed',node).forEach(function(n){ n.remove(); });
+      var body=$('#legal-body');
+      if(view==='legal'&&body) body.innerHTML=node.innerHTML;
+    }).catch(function(){});
+  }catch(e){}
+}
+
+
+/* ---------- Rappel de sauvegarde ---------- */
+function bkLine(){
+  if(!S.lastBackup) return 'Dernière sauvegarde : jamais.';
+  var n=daysBetween(S.lastBackup,today());
+  return 'Dernière sauvegarde : le '+fmtDate(S.lastBackup,true)+(n>0?' (il y a '+n+' '+plural(n,'jour','jours')+')':' (aujourd\'hui)')+'.';
+}
+function backupBanner(){
+  if(!hasData()) return '';
+  var ref=S.lastBackup||S.since; if(!ref) return '';
+  if(S.remindAfter&&S.remindAfter>today()) return '';
+  var age=daysBetween(ref,today()); if(age<7) return '';
+  var msg=S.lastBackup?'Ta dernière sauvegarde date de '+age+' jours.':"Tu n'as pas encore sauvegardé ton suivi.";
+  return '<div class="banner" role="region" aria-label="Rappel de sauvegarde"><span><b>Pense à sauvegarder ton suivi.</b> '+msg+" Certains navigateurs peuvent effacer les données d'un site peu visité.</span>"+
+    '<span class="tools"><button type="button" class="btn small" data-action="backup-now">Sauvegarder</button><button type="button" class="btn ghost small" data-action="backup-later">Plus tard</button></span></div>';
+}
+function markBackup(){ S.lastBackup=today(); S.remindAfter=''; persist(); var l=$('#bk-line'); if(l) l.innerHTML='<b>'+bkLine()+'</b>'; }
+function doBackup(){
+  if(DL){
+    var payload=JSON.stringify(Object.assign({},S,{lastBackup:today()}),null,2);
+    DL.save({filename:'cap-permis-sauvegarde-'+today()+'.json',data:payload}).then(function(){
+      markBackup(); toast('Sauvegarde enregistrée.'); if(view==='dash') render();
+    }).catch(function(e){ if(e&&e.code==='declined') return; toast("Le téléchargement a échoué. Essaie la copie manuelle dans les réglages."); });
+  } else {
+    goto('set'); setTimeout(function(){ var b=$('[data-action="io-show"]'); if(b) b.click(); },0);
+  }
+}
+
+
+/* ---------- Vue : Jour J ---------- */
+var JJ={
+  veille:[
+    ['v1',"Je vérifie l'heure et le lieu de ma convocation, et je prévois le trajet avec de la marge."],
+    ['v2',"Je prépare les documents demandés sur ma convocation et une pièce d'identité valide."],
+    ['v3',"Si je porte des lunettes ou des lentilles pour conduire, je les prépare."],
+    ['v4',"Je relis mes points « En progrès » et 2 ou 3 fiches de questions, sans bachoter."],
+    ['v5',"Je prévois une tenue confortable et des chaussures adaptées à la conduite."],
+    ['v6',"Je mange léger, sans alcool ni soirée tardive."],
+    ['v7',"Je règle mon réveil et je me couche à une heure raisonnable."]
+  ],
+  matin:[
+    ['m1',"Je prends un vrai petit-déjeuner et je bois de l'eau."],
+    ['m2',"Je revérifie mes documents avant de partir."],
+    ['m3',"J'arrive un peu en avance, sans courir."],
+    ['m4',"Je mets mon téléphone en silencieux."],
+    ['m5',"Je fais l'exercice de respiration ci-dessous avant de monter dans la voiture."]
+  ]
+};
+var PHRASES=[
+  "Je respire, j'observe, j'agis.",
+  "Une erreur n'est pas un échec : je continue normalement.",
+  "J'ai déjà fait ces gestes des dizaines de fois.",
+  "Je regarde loin et je prends mon temps.",
+  "Je n'ai pas besoin d'être parfait(e), j'ai besoin d'être attentif(ve) et prudent(e).",
+  "Je reviens à ce qui est concret : la route, les panneaux, les autres usagers, mon allure."
+];
+var BR={t:null,run:false};
+function jjCount(key){ var l=JJ[key], n=0; l.forEach(function(x){ if(S.jj.done[x[0]]) n++; }); return n+' sur '+l.length; }
+function jjList(key){
+  return '<ul class="jj-checks">'+JJ[key].map(function(x){
+    return '<li><label><input type="checkbox" data-ch="jjcheck" value="'+x[0]+'"'+(S.jj.done[x[0]]?' checked':'')+'><span>'+esc(x[1])+'</span></label></li>';
+  }).join('')+'</ul>';
+}
+function jjHero(){
+  if(!S.examDate) return '<div class="jj-hero"><p class="lede">Ajoute la date de ton examen pour voir le compte à rebours.</p><button type="button" class="btn ghost" data-action="nav" data-view="set">Ajouter la date</button></div>';
+  var d=daysBetween(today(),S.examDate);
+  if(d<0) return '<div class="jj-hero"><p class="lede">La date de ton examen est passée. Si tu le repasses, mets-la à jour dans les réglages.</p><button type="button" class="btn ghost" data-action="nav" data-view="set">Modifier la date</button></div>';
+  return '<div class="jj-hero"><div class="jj-count" aria-hidden="true">'+(d===0?'Jour J':'J-'+d)+'</div><p class="lede">'+(d===0?"C'est aujourd'hui. Tu as fait le travail : observe, analyse, agis.":d===1?"Demain, c'est le grand jour. Prépare tes affaires, puis repose-toi.":'Examen le '+fmtDate(S.examDate,true)+'. Tu as encore '+d+' jours pour consolider tes réflexes.')+'</p></div>';
+}
+function vJJ(){
+  var list=active(), strong=list.filter(function(i){ return S.levels[i.id]===2; }), nStrong=strong.length;
+  var exam=ITEMS.filter(function(i){ return i.moment==='Examen'&&S.hidden.indexOf('Examen')<0; });
+  var strongHTML=nStrong?
+    '<p>Tu maîtrises déjà <b>'+nStrong+' '+plural(nStrong,'réflexe','réflexes')+'</b> sur '+list.length+'. Par exemple&nbsp;:</p><ul class="strong-list">'+strong.slice(0,3).map(function(i){ return '<li>'+esc(i.text)+'</li>'; }).join('')+'</ul>':
+    '<p class="hint">Évalue tes réflexes dans la checklist : tes points forts apparaîtront ici. Les relire avant l\'examen fait du bien.</p>';
+  app.innerHTML=
+    '<div class="page-head"><h1>Jour J</h1><p class="lede">De quoi arriver serein à l\'examen : la préparation de la veille et du matin, les bons réflexes pendant l\'épreuve, puis quelques exercices pour te mettre en confiance.</p></div>'+
+    jjHero()+
+    '<section class="jj-sec"><div class="jj-h"><h2>La veille</h2><span class="muted" data-jjcount="veille">'+jjCount('veille')+'</span></div>'+jjList('veille')+'</section>'+
+    '<section class="jj-sec"><div class="jj-h"><h2>Le matin</h2><span class="muted" data-jjcount="matin">'+jjCount('matin')+'</span></div>'+jjList('matin')+
+      '<div class="tools no-print"><button type="button" class="btn ghost small" data-action="jj-reset">Décocher les cases</button></div></section>'+
+    '<section class="jj-sec"><h2>Pendant l\'épreuve</h2><p class="jj-note">Trois idées à garder en tête : <b>observer, analyser, agir</b> ; une erreur n\'est pas un échec ; prends ton temps. Si tu ne comprends pas une consigne, demande à l\'examinateur de la répéter.</p>'+
+      (exam.length?grpHTML('Examen',exam):'')+'</section>'+
+    '<section class="jj-sec"><h2>Exercices de confiance</h2>'+
+      '<section class="panel" style="margin-top:16px"><h3 class="h3" style="margin-top:0">1. Respire pour te calmer</h3><p class="hint">Inspire 4 secondes par le nez, expire 6 secondes doucement. 6 cycles, environ une minute.</p>'+
+      '<div class="br-stage"><div class="br-circle" id="br-circle"></div><div class="br-text"><strong id="br-phase" aria-live="polite">Prêt ?</strong><span id="br-count"></span></div></div>'+
+      '<button type="button" class="btn" id="br-btn" data-action="br-toggle">Commencer</button>'+
+      '<p class="hint" style="margin-top:10px">Simple exercice de détente. Si tu ne te sens pas bien, arrête-toi et respire normalement.</p></section>'+
+      '<section class="panel" style="margin-top:16px"><h3 class="h3" style="margin-top:0">2. Rappelle-toi ce que tu sais faire</h3>'+strongHTML+'</section>'+
+      '<section class="panel" style="margin-top:16px"><h3 class="h3" style="margin-top:0">3. Visualise ton examen (2 minutes)</h3><p class="hint">Lis ces étapes lentement, en imaginant chaque scène.</p><ol class="visu">'+
+        '<li>Assieds-toi confortablement et fais deux respirations lentes.</li>'+
+        "<li>Imagine-toi arriver à la voiture. Tu règles le siège et les rétroviseurs, tu attaches ta ceinture, tranquillement.</li>"+
+        "<li>Tu démarres. Tu regardes loin, tu contrôles autour de toi, tu roules à une allure bien adaptée.</li>"+
+        "<li>Un carrefour approche. Tu te demandes : « qu'est-ce que je ne vois pas ? » Tu ralentis à temps.</li>"+
+        "<li>Tu fais une petite erreur. Tu respires, tu te dis « ce n'est pas grave » et tu continues normalement.</li>"+
+        "<li>Tu te gares, l'examinateur te remercie. Tu ressens le calme et la fierté d'avoir fait de ton mieux.</li></ol></section>"+
+      '<section class="panel" style="margin-top:16px"><h3 class="h3" style="margin-top:0">4. Ma carte de confiance</h3><p class="hint">Écris tes propres mots. Ils restent sur cet appareil.</p>'+
+        '<div class="form-grid" style="margin-top:12px"><div class="field wide"><label for="jj-a">Ma phrase pour le jour J</label><input class="inp" id="jj-a" data-in="jj" data-k="a" maxlength="300" value="'+esc(S.jj.a)+'" placeholder="Ex. : je respire, j\'observe, j\'agis."></div>'+
+        '<div class="field wide"><label for="jj-b">Ce que je me dis si je fais une erreur</label><input class="inp" id="jj-b" data-in="jj" data-k="b" maxlength="300" value="'+esc(S.jj.b)+'" placeholder="Ex. : ce n\'est pas grave, je continue."></div>'+
+        '<div class="field wide"><label for="jj-c">Ce dont je suis fier(e) dans mon apprentissage</label><textarea class="inp" id="jj-c" data-in="jj" data-k="c" rows="2" maxlength="300">'+esc(S.jj.c)+'</textarea></div></div>'+
+        '<p class="hint" style="margin-top:16px">Une phrase pour toi :</p><p class="phrase" id="phrase">'+esc(S.jj.a||PHRASES[0])+'</p>'+
+        '<button type="button" class="btn ghost small" data-action="jj-phrase">Une autre phrase</button></section>'+
+    '</section>';
+}
+function brStop(text){
+  clearInterval(BR.t); BR.t=null; BR.run=false;
+  var b=$('#br-btn'), ph=$('#br-phase'), c=$('#br-count'), ci=$('#br-circle');
+  if(b) b.textContent='Commencer';
+  if(ph) ph.textContent=text||'Prêt ?';
+  if(c) c.textContent='';
+  if(ci){ ci.style.transitionDuration='1s'; ci.style.transform='scale(.6)'; }
+}
+function brStart(){
+  var seq=[]; for(var k=0;k<6;k++){ seq.push(['Inspire',4]); seq.push(['Expire',6]); }
+  var idx=0, left=0; BR.run=true; $('#br-btn').textContent='Arrêter';
+  function begin(){
+    var ph=seq[idx]; left=ph[1];
+    $('#br-phase').textContent=ph[0]; $('#br-count').textContent=left;
+    var ci=$('#br-circle'); ci.style.transitionDuration=ph[1]+'s'; ci.style.transform=ph[0]==='Inspire'?'scale(1)':'scale(.6)';
+  }
+  begin();
+  BR.t=setInterval(function(){
+    if(view!=='jj'||!$('#br-circle')){ clearInterval(BR.t); BR.run=false; return; }
+    left--;
+    if(left<=0){ idx++; if(idx>=seq.length){ brStop('Bravo. Respire normalement.'); return; } begin(); }
+    else $('#br-count').textContent=left;
+  },1000);
+}
+
+/* ---------- Vue : Réglages ---------- */
+function vSet(){
+  var mods=MOMENTS.map(function(m){
+    var n=ITEMS.filter(function(i){ return i.moment===m; }).length;
+    return '<label class="check"><input type="checkbox" data-ch="module" value="'+esc(m)+'"'+(S.hidden.indexOf(m)<0?' checked':'')+'><span>'+esc(m)+'</span><span class="muted">'+n+' réflexe'+(n>1?'s':'')+'</span></label>';
+  }).join('');
+  app.innerHTML=
+    '<div class="page-head"><h1>Réglages</h1></div><div class="stackv">'+
+    '<section class="panel"><h2>Mon profil</h2><div class="form-grid" style="margin-top:12px">'+
+      '<div class="field"><label for="s-name">Prénom (facultatif)</label><input class="inp" id="s-name" data-in="name" maxlength="40" value="'+esc(S.name)+'" autocomplete="given-name"></div>'+
+      '<div class="field"><label for="s-exam">Date de l\'examen</label><input class="inp" id="s-exam" type="date" data-in="exam" value="'+esc(S.examDate)+'"></div>'+
+      '<div class="field wide"><label for="s-target">Objectif de maîtrise</label><div class="range"><input id="s-target" type="range" min="50" max="100" step="5" data-in="target" value="'+S.target+'"><output id="s-target-o" for="s-target">'+S.target+' %</output></div>'+
+      '<span class="hint">Le repère blanc sur la jauge. Vise 85 % ou plus avant de passer l\'examen.</span></div></div></section>'+
+    '<section class="panel"><h2>Réflexes suivis</h2><p class="hint">Décoche ce qui ne concerne pas ton examen, par exemple la boîte manuelle si tu passes en boîte automatique. <span id="mod-count"></span></p>'+
+      '<div class="tools" style="margin:10px 0 12px"><button type="button" class="btn ghost small" data-action="preset-auto">Je passe en boîte automatique</button><button type="button" class="btn ghost small" data-action="preset-all">Tout suivre</button></div>'+mods+'</section>'+
+    '<section class="panel"><h2>Mes données</h2><p class="hint">Tout est enregistré dans ce navigateur. Certains navigateurs (comme Safari sur iPhone) peuvent effacer les données d\'un site qu\'on n\'a pas ouvert depuis longtemps. Sauvegarde ton suivi de temps en temps, et avant de changer d\'appareil.</p><p class="hint" id="bk-line" style="margin-top:8px"><b>'+bkLine()+'</b></p>'+
+      '<div class="tools"><button type="button" class="btn" data-action="export-json" data-needs-dl hidden>Télécharger ma sauvegarde</button><button type="button" class="btn ghost" data-action="export-csv" data-needs-dl hidden>Exporter en tableau (CSV)</button><button type="button" class="btn ghost" data-action="pick-file">Restaurer depuis un fichier</button><input type="file" id="imp-file" accept=".json,application/json" hidden></div>'+
+      '<h3 class="h3">Sauvegarde par copier-coller</h3><p class="hint">Copie ce texte dans un endroit sûr. Pour restaurer, colle-le dans la zone puis valide.</p>'+
+      '<textarea class="inp" id="io" rows="4" style="margin-top:8px" spellcheck="false" placeholder="Ta sauvegarde apparaîtra ici"></textarea>'+
+      '<div class="tools"><button type="button" class="btn ghost small" data-action="io-show">Afficher et copier ma sauvegarde</button><button type="button" class="btn ghost small" data-action="io-restore">Restaurer depuis ce texte</button></div>'+
+      '<h3 class="h3">Zone sensible</h3><div class="tools"><button type="button" class="btn ghost small" data-action="demo">Charger un exemple rempli</button><button type="button" class="btn danger small" data-action="reset">Tout effacer</button></div>'+
+      '<p class="hint" style="margin-top:8px">Charger l\'exemple ou tout effacer remplace ton suivi actuel.</p></section></div>';
+  updModCount();
+}
+function updModCount(){ var el=$('#mod-count'); if(el) el.textContent=active().length+' réflexes suivis sur '+ITEMS.length+'.'; }
+
+function toCSV(){
+  function q(v){ return '"'+String(v==null?'':v).replace(/"/g,'""')+'"'; }
+  var rows=[['n°','Moment','Domaine','Réflexe','Niveau','Épinglé','Note','Dernière mise à jour']];
+  ITEMS.forEach(function(i){
+    var l=S.levels[i.id];
+    rows.push([i.id,i.moment,i.domain,i.text,l===undefined?'Non évalué':LV[l].name,S.pins[i.id]?'oui':'',S.notes[i.id]||'',S.updated[i.id]||'']);
+  });
+  return '\ufeff'+rows.map(function(r){ return r.map(q).join(';'); }).join('\r\n');
+}
+function loadExample(){
+  var b=fresh(); b.name=S.name; b.examDate=S.examDate; b.target=S.target; b.ql=S.ql||{};
+  ITEMS.forEach(function(i){ b.levels[i.id]=EXAMPLE_TODO.indexOf(i.id)>=0?0:2; b.updated[i.id]=today(); });
+  b.notes[9]="Lever les yeux : viser le fond de la rue, pas le capot.";
+  b.notes[72]="Lever le pied avant le carrefour, pas pendant.";
+  [9,20,72].forEach(function(id){ b.pins[id]=true; });
+  b.history=[[35,31],[28,46],[21,58],[14,69],[7,78]].map(function(x){ return {d:daysAgo(x[0]),p:x[1]}; });
+  b.journal=[
+    {id:1,d:daysAgo(9),dur:60,feel:3,good:"Insertion sur voie rapide bien préparée, rétros systématiques.",work:"Anticiper les intersections : je regarde encore trop près."},
+    {id:2,d:daysAgo(2),dur:90,feel:4,good:"Créneau réussi du premier coup, giratoires fluides.",work:"Adapter ma vitesse avant la situation, pas pendant."}
+  ];
+  S=b; snapshot(); persist();
+}
+function armed(btn,label){
+  if(btn.dataset.armed){ clearTimeout(btn._t); delete btn.dataset.armed; return true; }
+  btn.dataset.armed='1'; btn.dataset.old=btn.textContent; btn.textContent=label||'Confirmer ?';
+  btn._t=setTimeout(function(){ delete btn.dataset.armed; btn.textContent=btn.dataset.old; },3500);
+  return false;
+}
+function importObj(txt){
+  var o; try{ o=JSON.parse(txt); }catch(e){ toast("Ce texte n'est pas une sauvegarde valide."); return; }
+  if(!o||typeof o!=='object'||!o.levels){ toast("Ce texte n'est pas une sauvegarde Cap Permis."); return; }
+  S=normalize(o); persist(); render(); toast('Sauvegarde restaurée.');
+}
+
+/* ---------- Événements ---------- */
+document.addEventListener('click',function(e){
+  var t=e.target.closest('[data-action]'); if(!t) return;
+  var a=t.dataset.action, id=+t.dataset.id;
+  switch(a){
+    case 'nav': goto(t.dataset.view); break;
+    case 'br-toggle': if(BR.run) brStop(); else brStart(); break;
+    case 'jj-phrase': var pe=$('#phrase'), np; do{ np=PHRASES[Math.floor(Math.random()*PHRASES.length)]; }while(np===pe.textContent&&PHRASES.length>1); pe.textContent=np; break;
+    case 'jj-reset': S.jj.done={}; persist(); $$('[data-ch="jjcheck"]').forEach(function(c){ c.checked=false; }); $$('[data-jjcount]').forEach(function(e){ e.textContent=jjCount(e.dataset.jjcount); }); break;
+
+    case 'ex-tab': EX.tab=t.dataset.tab; renderExBody(); break;
+    case 'ex-type': EX.type=t.dataset.type; $$('#ex-types [data-type]').forEach(function(c){ c.setAttribute('aria-pressed',String(c.dataset.type===EX.type)); }); renderFicheList(); break;
+    case 'fiche-open':
+      var raw=($('#fiche-n').value||'').trim(), num=/^\d+$/.test(raw)?parseInt(raw,10):NaN;
+      if(!(num>=1&&num<=100)){ $('#fiche-err').textContent='Entre un nombre entier entre 1 et 100.'; $('#fiche-n').focus(); break; }
+      openFiche(num,true); break;
+    case 'fiche-random': openFiche(randomFiche(),true); break;
+    case 'fiche-prev': openFiche(EX.fiche>1?EX.fiche-1:100,true); break;
+    case 'fiche-next': openFiche(EX.fiche<100?EX.fiche+1:1,true); break;
+    case 'fiche-go': EX.tab='fiche'; renderExBody(); openFiche(+t.dataset.n,true); break;
+    case 'toggle-ans':
+      EX.showAns=!EX.showAns;
+      $$('#ex-body details.ans').forEach(function(d){ d.open=EX.showAns; });
+      $$('[data-action="toggle-ans"]').forEach(function(b){ b.textContent=EX.showAns?'Masquer les réponses':'Afficher les réponses'; }); break;
+    case 'qlevel':
+      var qid=t.dataset.qid, qk=+t.dataset.k;
+      if(S.ql[qid]===qk) delete S.ql[qid]; else S.ql[qid]=qk;
+      persist();
+      $$('.qcard[data-qid="'+qid+'"]').forEach(function(c){
+        var l=S.ql[qid]; c.setAttribute('data-l',l===undefined?'n':l);
+        $$('.lv',c).forEach(function(b){ b.setAttribute('aria-pressed',String(+b.dataset.k===l)); });
+      });
+      refreshQSum(); break;
+
+    case 'theme':
+      var dark=document.documentElement.getAttribute('data-theme')==='dark' || (!document.documentElement.getAttribute('data-theme') && window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches);
+      var next=dark?'light':'dark'; document.documentElement.setAttribute('data-theme',next);
+      try{ localStorage.setItem(THEME_KEY,next); }catch(err){}
+      break;
+    case 'level': setLevel(id,+t.dataset.k); refreshRow(id); break;
+    case 'pin':
+      if(S.pins[id]) delete S.pins[id]; else S.pins[id]=true;
+      persist(); t.setAttribute('aria-pressed',String(!!S.pins[id])); break;
+    case 'note':
+      var row=t.closest('.row'), box=$('.note',row), open=box.hidden;
+      box.hidden=!open; openNotes[id]=open; t.setAttribute('aria-expanded',String(open));
+      if(open) $('textarea',box).focus(); break;
+    case 'status':
+      F.status=t.dataset.status; $$('#chips [data-action="status"]').forEach(function(c){ c.setAttribute('aria-pressed',String(c.dataset.status===F.status)); }); renderList(); break;
+    case 'pinfilter':
+      F.pin=!F.pin; t.setAttribute('aria-pressed',String(F.pin)); renderList(); break;
+    case 'reset-filters':
+      F.q='';F.status='all';F.moment='all';F.pin=false; vList(); break;
+    case 'goto-moment': F={q:'',status:'all',moment:t.dataset.moment,pin:false}; goto('list'); break;
+    case 'goto-status': F={q:'',status:t.dataset.status,moment:'all',pin:false}; goto('list'); break;
+    case 'demo':
+      if(Object.keys(S.updated).length&&!armed(t,'Confirmer le remplacement ?')) break;
+      loadExample(); view='dash'; render(); window.scrollTo(0,0); toast('Exemple chargé. Tu peux tout effacer dans les réglages.'); break;
+    case 'reset':
+      if(!armed(t,'Confirmer : tout effacer ?')) break;
+      S=fresh(); persist(); F={q:'',status:'all',moment:'all',pin:false}; openNotes={}; render(); toast('Suivi effacé.'); break;
+    case 'preset-auto':
+      if(S.hidden.indexOf('Boîte manuelle')<0) S.hidden.push('Boîte manuelle');
+      if(Object.keys(S.updated).length) snapshot(); persist(); vSet(); toast('Boîte manuelle retirée du suivi.'); break;
+    case 'preset-all': S.hidden=[]; if(Object.keys(S.updated).length) snapshot(); persist(); vSet(); break;
+    case 'fiche-copy': copyText(ficheText()); break;
+    case 'fiche-dl': saveFile('cap-permis-fiche-lecon-'+today()+'.txt',ficheText()); break;
+    case 'print': try{ window.print(); }catch(err){ toast("L'impression n'est pas disponible ici. Utilise « Copier la fiche »."); } break;
+    case 'export-json': doBackup(); break;
+    case 'backup-now': doBackup(); break;
+    case 'backup-later': S.remindAfter=addDays(today(),3); persist(); render(); toast('Je te le rappellerai dans 3 jours.'); break;
+    case 'export-csv': saveFile('cap-permis-suivi-'+today()+'.csv',toCSV()); break;
+    case 'pick-file': $('#imp-file').click(); break;
+    case 'io-show': markBackup(); var ta=$('#io'); ta.value=JSON.stringify(S); ta.focus(); ta.select(); copyText(ta.value); break;
+    case 'io-restore': var v=$('#io').value.trim(); if(!v){ toast("Colle d'abord ta sauvegarde dans la zone."); break; } if(!armed(t,'Confirmer le remplacement ?')) break; importObj(v); break;
+    case 'feel': J.feel=(J.feel===+t.dataset.n)?0:+t.dataset.n; $$('[data-action="feel"]').forEach(function(c){ c.setAttribute('aria-pressed',String(+c.dataset.n===J.feel)); }); break;
+    case 'jadd':
+      var d=$('#j-date').value||today(), dur=parseInt($('#j-dur').value,10)||0, good=$('#j-good').value.trim(), work=$('#j-work').value.trim();
+      if(!good&&!work&&!J.feel&&!dur){ toast('Ajoute une durée, un ressenti ou une note.'); break; }
+      S.journal.push({id:Date.now(),d:d,dur:dur,feel:J.feel,good:good,work:work});
+      persist(); J.feel=0; vProg(); toast('Séance ajoutée au journal.'); break;
+    case 'jdel':
+      if(!armed(t,'Confirmer ?')) break;
+      S.journal=S.journal.filter(function(j){ return j.id!==id; }); persist(); vProg(); break;
+  }
+});
+document.addEventListener('keydown',function(e){
+  if(e.key==='Enter'&&e.target&&e.target.id==='fiche-n'){ e.preventDefault(); var b=$('[data-action="fiche-open"]'); if(b) b.click(); }
+});
+var noteTimer;
+document.addEventListener('input',function(e){
+  var t=e.target;
+  if(t.id==='q'){ F.q=t.value; renderList(); return; }
+  if(t.id==='ex-q'){ EX.q=t.value; renderFicheList(); return; }
+  var k=t.dataset&&t.dataset.in; if(!k) return;
+  if(k==='note'){
+    var id=+t.dataset.id, val=t.value;
+    clearTimeout(noteTimer); noteTimer=setTimeout(function(){
+      if(val.trim()) S.notes[id]=val; else delete S.notes[id];
+      persist();
+      var b=$('.row[data-id="'+id+'"] [data-action="note"]'); if(b) b.classList.toggle('has-note',!!val.trim());
+    },250);
+  }
+  else if(k==='name'){ S.name=t.value.slice(0,40); persist(); }
+  else if(k==='jj'){ S.jj[t.dataset.k]=t.value.slice(0,300); persist(); if(t.dataset.k==='a'){ var ph=$('#phrase'); if(ph) ph.textContent=t.value.trim()||PHRASES[0]; } }
+  else if(k==='exam'){ S.examDate=/^\d{4}-\d{2}-\d{2}$/.test(t.value)?t.value:''; persist(); }
+  else if(k==='target'){ S.target=+t.value; $('#s-target-o').textContent=S.target+' %'; persist(); }
+});
+document.addEventListener('change',function(e){
+  var t=e.target;
+  if(t.id==='f-moment'){ F.moment=t.value; renderList(); return; }
+  if(t.dataset&&t.dataset.ch==='jjcheck'){
+    if(t.checked) S.jj.done[t.value]=true; else delete S.jj.done[t.value];
+    persist(); $$('[data-jjcount]').forEach(function(e){ e.textContent=jjCount(e.dataset.jjcount); }); return;
+  }
+  if(t.dataset&&t.dataset.ch==='module'){
+    var i=S.hidden.indexOf(t.value);
+    if(t.checked&&i>=0) S.hidden.splice(i,1); else if(!t.checked&&i<0) S.hidden.push(t.value);
+    if(F.moment===t.value) F.moment='all';
+    if(Object.keys(S.updated).length) snapshot(); persist(); updModCount(); return;
+  }
+  if(t.id==='imp-file'&&t.files&&t.files[0]){
+    var rd=new FileReader(); rd.onload=function(){ importObj(String(rd.result)); }; rd.onerror=function(){ toast('Lecture du fichier impossible.'); };
+    rd.readAsText(t.files[0]); t.value='';
+  }
+});
+
+/* ---------- Démarrage ---------- */
+try{
+  if(window.claude&&typeof window.claude.use==='function'){
+    window.claude.use('downloads').then(function(x){ DL=x; applyDl(); }).catch(function(){});
+  }
+}catch(e){}
+render();
+})();
+</script>
+</body>
+</html>
