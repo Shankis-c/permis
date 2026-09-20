@@ -1,9 +1,9 @@
-# Cap Permis
+# Cap Permis B
 
 Outil web gratuit de **suivi personnel** pour préparer l'examen pratique du permis de conduire.
 Il aide à voir ce qui est acquis, ce qu'il reste à travailler, et à réviser les questions de l'examen.
 
-Site : https://cap-permis.fr
+Site : https://cap-permisb.fr
 
 ## Fonctionnalités
 
@@ -38,7 +38,7 @@ En local, les mentions légales s'affichent depuis une copie intégrée à `inde
 ## Déploiement
 
 Le site est hébergé sur **GitHub Pages** (*Settings → Pages → Deploy from a branch → `main` / `(root)`*).
-Le domaine `cap-permis.fr` est enregistré chez OVH. Sa zone DNS contient quatre enregistrements `A`
+Le domaine `cap-permisb.fr` est enregistré chez OVH. Sa zone DNS contient quatre enregistrements `A`
 vers les adresses de GitHub Pages, et un `CNAME` pour `www`. Voir la documentation GitHub :
 https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site
 
@@ -57,12 +57,12 @@ Dans `index.html` :
 
 © 2026 l'auteur du site. Tous droits réservés : toute réutilisation du site (code, design, textes) nécessite son accord.
 
-Les questions de l'examen proviennent d'un document officiel. Elles ont été reprises, regroupées et reformulées à partir
-du document de révision « Les 100 questions du permis ». Elles ne sont pas couvertes par ces droits réservés.
+Les questions de l'examen sont issues d'un document officiel. Elles ont été reprises, regroupées et reformulées
+pour ce site. Elles ne sont pas couvertes par ces droits réservés.
 
 ## Avertissement
 
-Cap Permis est un outil d'auto-évaluation. Il ne remplace ni une école de conduite, ni les conseils d'un moniteur,
+Cap Permis B est un outil d'auto-évaluation. Il ne remplace ni une école de conduite, ni les conseils d'un moniteur,
 et ne garantit pas la réussite à l'examen. Les contenus peuvent ne plus être à jour : vérifier auprès d'une école
 de conduite ou des sources officielles.
 
