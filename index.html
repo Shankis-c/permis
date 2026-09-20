@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light dark">
-<title>Cap Permis – suis tes réflexes de conduite jusqu'à l'examen</title>
+<title>Cap Permis B – suis tes réflexes de conduite jusqu'à l'examen</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -341,6 +341,7 @@ footer .copy{color:var(--ink);font-weight:600}
   .stop{grid-template-columns:24px minmax(0,1fr) 70px 40px;gap:8px}
 }
 @media(min-width:761px){.theme{margin-left:0}}
+@media(max-width:400px){.brand{font-size:1.3rem;gap:8px}.top-in{gap:6px}}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}}
 @media print{
   body{background:#fff;color:#000;padding:0}
@@ -354,9 +355,9 @@ footer .copy{color:var(--ink);font-weight:600}
 <a class="skip" href="#app">Aller au contenu</a>
 <header class="top no-print">
   <div class="wrap top-in">
-    <button type="button" class="brand" data-action="nav" data-view="dash" aria-label="Cap Permis, retour au bilan">
+    <button type="button" class="brand" data-action="nav" data-view="dash" aria-label="Cap Permis B, retour au bilan">
       <svg viewBox="0 0 32 32" width="32" height="32" aria-hidden="true"><rect width="32" height="32" rx="9" fill="var(--sign)"/><path d="M8 28L14 5M24 28L18 5" stroke="var(--on-sign)" stroke-width="2.4" stroke-linecap="round" fill="none"/><path d="M16 27v-3.5M16 19.5v-4M16 11.5v-2.5" stroke="var(--on-sign)" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
-      Cap Permis
+      Cap Permis B
     </button>
     <nav class="nav" aria-label="Navigation principale">
       <button type="button" data-action="nav" data-view="dash"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 18a8 8 0 1 1 16 0"/><path d="M12 18l4-6"/></svg><span>Bilan</span></button>
@@ -375,9 +376,9 @@ footer .copy{color:var(--ink);font-weight:600}
 <main id="app" class="wrap" tabindex="-1"></main>
 <footer class="no-print">
   <div class="wrap">
-    <p class="copy">© 2026 Cap Permis. Tous droits réservés.</p>
+    <p class="copy">© 2026 Cap Permis B. Tous droits réservés.</p>
     <p>Tes données restent sur cet appareil, dans ce navigateur. Exporte-les de temps en temps dans les réglages.</p>
-    <p>Cap Permis est un outil d'auto-évaluation. Il complète les conseils de ton moniteur, il ne les remplace pas.</p>
+    <p>Cap Permis B est un outil d'auto-évaluation. Il complète les conseils de ton moniteur, il ne les remplace pas.</p>
     <p class="foot-links"><button type="button" class="link" data-action="nav" data-view="help">Mode d'emploi</button><button type="button" class="link" data-action="nav" data-view="legal">Mentions légales</button></p>
   </div>
 </footer>
@@ -816,7 +817,7 @@ function todoList(){ return active().filter(function(i){ var l=S.levels[i.id]; r
 function ficheText(){
   var todo=todoList(), pin=todo.filter(function(i){ return S.pins[i.id]; }), rest=todo.filter(function(i){ return !S.pins[i.id]; });
   function line(i){ return '[ ] '+i.moment+' / '+i.domain+' : '+i.text+(S.levels[i.id]===1?' (en progrès)':'')+(S.notes[i.id]?'\n      Note : '+S.notes[i.id]:''); }
-  var out=['CAP PERMIS - FICHE DE LEÇON','Date : '+fmtDate(today(),true)+(S.name?'  |  '+S.name:''),''];
+  var out=['CAP PERMIS B - FICHE DE LEÇON','Date : '+fmtDate(today(),true)+(S.name?'  |  '+S.name:''),''];
   out.push('À AVOIR EN TÊTE PENDANT LA LEÇON ('+pin.length+')');
   out=out.concat(pin.length?pin.map(line):['(aucun réflexe épinglé)']);
   out.push('','RESTE À AUTOMATISER ('+rest.length+')');
@@ -1020,7 +1021,7 @@ function vExam(){
     '<div class="chips tabs" id="ex-tabs" role="group" aria-label="Affichage"><button type="button" class="chip" data-action="ex-tab" data-tab="fiche" aria-pressed="true">Tirer une fiche</button><button type="button" class="chip" data-action="ex-tab" data-tab="list" aria-pressed="false">Voir les 100 fiches</button></div>'+
     '<div id="ex-body"></div>'+
     '<section class="panel" id="qsum" style="margin-top:34px">'+qSumHTML()+'</section>'+
-    '<p class="hint" style="margin-top:20px">Fiches reprises du document « Les 100 questions du permis ». Les 100 fiches reprennent plusieurs fois les mêmes questions : le suivi porte sur les '+QITEMS.length+' questions différentes. Vérifie avec ton école de conduite que le contenu est à jour pour ta date d\'examen.</p>';
+    '<p class="hint" style="margin-top:20px">Fiches issues d\'un document officiel, reprises et reformulées. Les 100 fiches reprennent plusieurs fois les mêmes questions : le suivi porte sur les '+QITEMS.length+' questions différentes. Vérifie avec ton école de conduite que le contenu est à jour pour ta date d\'examen.</p>';
   renderExBody();
 }
 
@@ -1045,7 +1046,7 @@ function vHelp(){
      "set","Ouvrir les réglages"]
   ];
   app.innerHTML=
-    '<div class="help-wrap"><div class="page-head"><h1>Mode d\'emploi</h1><p class="lede">Cap Permis t\'aide à voir ce que tu maîtrises déjà et ce qu\'il te reste à travailler avant l\'examen de conduite. Il suffit de suivre ces 5 étapes.</p></div>'+
+    '<div class="help-wrap"><div class="page-head"><h1>Mode d\'emploi</h1><p class="lede">Cap Permis B t\'aide à voir ce que tu maîtrises déjà et ce qu\'il te reste à travailler avant l\'examen de conduite. Il suffit de suivre ces 5 étapes.</p></div>'+
     steps.map(function(st,i){
       return '<section class="step help-step"><h2 class="step-t"><span class="step-n">'+(i+1)+'</span>'+st[0]+'</h2><p>'+st[1]+'</p><button type="button" class="btn ghost" data-action="nav" data-view="'+st[2]+'">'+st[3]+'</button></section>';
     }).join('')+
@@ -1065,7 +1066,7 @@ function vHelp(){
 /* ---------- Vue : Mentions légales ---------- */
 /* Le texte vient du fichier mentions-legales.html (même dossier) quand le site est hébergé.
    Une copie intégrée s'affiche tout de suite, et sert de secours si le fichier est introuvable. */
-var LEGAL_FALLBACK = "<p class=\"upd\">Dernière mise à jour : 19 septembre 2026.<\/p>\n\n    <h2>Éditeur du site<\/h2>\n    <p>Cap Permis est un site personnel, gratuit et sans but lucratif, édité à titre non professionnel par son auteur. Le directeur de la publication est l'auteur du site.<\/p>\n    <p>Contact : <a href=\"mailto:devby.fou@gmail.com\">devby.fou@gmail.com<\/a><\/p>\n\n    <h2>Hébergement<\/h2>\n    <p>Le site est hébergé par GitHub Pages, un service de&nbsp;:<\/p>\n    <address>GitHub, Inc.<br>88 Colin P. Kelly Jr. Street<br>San Francisco, CA 94107<br>États-Unis<br><a href=\"https://pages.github.com\" rel=\"noopener noreferrer\">pages.github.com<\/a><\/address>\n\n    <h2>Objet du site et avertissement<\/h2>\n    <p>Cap Permis est un outil d'auto-évaluation qui aide les candidats à suivre leur préparation à l'examen pratique du permis de conduire.<\/p>\n    <p>Il ne remplace ni la formation dispensée par une école de conduite, ni les conseils d'un moniteur. Il ne garantit en aucun cas la réussite à l'examen.<\/p>\n    <p>Les contenus (réflexes de conduite, questions de l'examen, réponses) peuvent comporter des erreurs ou ne plus être à jour, par exemple si la réglementation ou le déroulement de l'épreuve évoluent. Vérifie toujours les informations auprès de ton école de conduite ou des sources officielles.<\/p>\n\n    <h2>Propriété intellectuelle<\/h2>\n    <p>© 2026 Cap Permis. Tous droits réservés.<\/p>\n    <p>La structure, le design, le code et les textes du site appartiennent à l'auteur, sauf mention contraire. Toute reproduction ou réutilisation en dehors d'un usage personnel nécessite l'accord préalable de l'auteur.<\/p>\n    <p>Les fiches de questions de l'examen sont reprises et reformulées à partir du document de révision « Les 100 questions du permis ». Les droits sur ce document restent la propriété de leurs titulaires. Si vous êtes titulaire de droits et souhaitez une modification ou un retrait, écrivez à l'adresse de contact ci-dessus.<\/p>\n\n    <h2>Données personnelles et cookies<\/h2>\n    <p>Cap Permis ne collecte aucune donnée personnelle sur un serveur et ne transmet rien à l'auteur. Il n'utilise ni cookies publicitaires, ni outil de mesure d'audience.<\/p>\n    <p>Pour fonctionner, le site enregistre dans le stockage local du navigateur (localStorage), uniquement sur l'appareil de l'utilisateur, les informations suivantes&nbsp;:<\/p>\n    <ul>\n      <li>les niveaux choisis pour les réflexes et les questions, les notes personnelles, le journal de conduite et la courbe d'évolution&nbsp;;<\/li>\n      <li>les cases cochées et les textes de la page Jour J, ainsi que la date de la dernière sauvegarde&nbsp;;<\/li>\n      <li>les réglages (prénom facultatif, date d'examen, objectif, réflexes suivis)&nbsp;;<\/li>\n      <li>le thème clair ou sombre.<\/li>\n    <\/ul>\n    <p>Ces informations restent sur l'appareil. L'utilisateur peut les effacer à tout moment avec le bouton « Tout effacer » de la page Réglages, ou en vidant les données de son navigateur. Le site peut être utilisé par des mineurs : il ne demande aucune information obligatoire.<\/p>\n    <p>Pour afficher les pages, le site charge des polices de caractères depuis Google Fonts (Google). À cette occasion, l'adresse IP du visiteur peut être transmise à Google. Par ailleurs, l'hébergeur GitHub peut enregistrer des données techniques de connexion (comme l'adresse IP) selon sa propre politique de confidentialité, consultable sur github.com.<\/p>\n    <p>Pour toute question sur ces points, écrivez à <a href=\"mailto:devby.fou@gmail.com\">devby.fou@gmail.com<\/a>.<\/p>\n\n    <h2>Responsabilité<\/h2>\n    <p>L'auteur s'efforce de fournir des informations exactes mais ne peut être tenu responsable des erreurs, des omissions, ni des conséquences de l'utilisation du site ou de son indisponibilité.<\/p>\n\n    <h2>Droit applicable<\/h2>\n    <p>Les présentes mentions légales sont soumises au droit français.<\/p>";
+var LEGAL_FALLBACK = "<p class=\"upd\">Dernière mise à jour : 20 septembre 2026.<\/p>\n\n    <h2>Éditeur du site<\/h2>\n    <p>Cap Permis B est un site personnel, gratuit et sans but lucratif, édité à titre non professionnel par son auteur. Le directeur de la publication est l'auteur du site.<\/p>\n    <p>Contact : <a href=\"mailto:devby.fou@gmail.com\">devby.fou@gmail.com<\/a><\/p>\n\n    <h2>Hébergement<\/h2>\n    <p>Le site est hébergé par GitHub Pages, un service de&nbsp;:<\/p>\n    <address>GitHub, Inc.<br>88 Colin P. Kelly Jr. Street<br>San Francisco, CA 94107<br>États-Unis<br><a href=\"https://pages.github.com\" rel=\"noopener noreferrer\">pages.github.com<\/a><\/address>\n\n    <h2>Objet du site et avertissement<\/h2>\n    <p>Cap Permis B est un outil d'auto-évaluation qui aide les candidats à suivre leur préparation à l'examen pratique du permis de conduire.<\/p>\n    <p>Il ne remplace ni la formation dispensée par une école de conduite, ni les conseils d'un moniteur. Il ne garantit en aucun cas la réussite à l'examen.<\/p>\n    <p>Les contenus (réflexes de conduite, questions de l'examen, réponses) peuvent comporter des erreurs ou ne plus être à jour, par exemple si la réglementation ou le déroulement de l'épreuve évoluent. Vérifie toujours les informations auprès de ton école de conduite ou des sources officielles.<\/p>\n\n    <h2>Propriété intellectuelle<\/h2>\n    <p>© 2026 Cap Permis B. Tous droits réservés.<\/p>\n    <p>La structure, le design, le code et les textes du site appartiennent à l'auteur, sauf mention contraire. Toute reproduction ou réutilisation en dehors d'un usage personnel nécessite l'accord préalable de l'auteur.<\/p>\n    <p>Les fiches de questions de l'examen sont issues d'un document officiel. Elles ont été reprises, regroupées et reformulées pour ce site. Si vous estimez qu'un contenu porte atteinte à vos droits, écrivez à l'adresse de contact ci-dessus.<\/p>\n\n    <h2>Données personnelles et cookies<\/h2>\n    <p>Cap Permis B ne collecte aucune donnée personnelle sur un serveur et ne transmet rien à l'auteur. Il n'utilise ni cookies publicitaires, ni outil de mesure d'audience.<\/p>\n    <p>Pour fonctionner, le site enregistre dans le stockage local du navigateur (localStorage), uniquement sur l'appareil de l'utilisateur, les informations suivantes&nbsp;:<\/p>\n    <ul>\n      <li>les niveaux choisis pour les réflexes et les questions, les notes personnelles, le journal de conduite et la courbe d'évolution&nbsp;;<\/li>\n      <li>les cases cochées et les textes de la page Jour J, ainsi que la date de la dernière sauvegarde&nbsp;;<\/li>\n      <li>les réglages (prénom facultatif, date d'examen, objectif, réflexes suivis)&nbsp;;<\/li>\n      <li>le thème clair ou sombre.<\/li>\n    <\/ul>\n    <p>Ces informations restent sur l'appareil. L'utilisateur peut les effacer à tout moment avec le bouton « Tout effacer » de la page Réglages, ou en vidant les données de son navigateur. Le site peut être utilisé par des mineurs : il ne demande aucune information obligatoire.<\/p>\n    <p>Pour afficher les pages, le site charge des polices de caractères depuis Google Fonts (Google). À cette occasion, l'adresse IP du visiteur peut être transmise à Google. Par ailleurs, l'hébergeur GitHub peut enregistrer des données techniques de connexion (comme l'adresse IP) selon sa propre politique de confidentialité, consultable sur github.com.<\/p>\n    <p>Pour toute question sur ces points, écrivez à <a href=\"mailto:devby.fou@gmail.com\">devby.fou@gmail.com<\/a>.<\/p>\n\n    <h2>Responsabilité<\/h2>\n    <p>L'auteur s'efforce de fournir des informations exactes mais ne peut être tenu responsable des erreurs, des omissions, ni des conséquences de l'utilisation du site ou de son indisponibilité.<\/p>\n\n    <h2>Droit applicable<\/h2>\n    <p>Les présentes mentions légales sont soumises au droit français.<\/p>";
 function vLegal(){
   app.innerHTML='<div class="help-wrap legal"><div class="page-head"><h1>Mentions légales</h1></div><div class="legal-body" id="legal-body">'+LEGAL_FALLBACK+'</div></div>';
   try{
@@ -1264,7 +1265,7 @@ function armed(btn,label){
 }
 function importObj(txt){
   var o; try{ o=JSON.parse(txt); }catch(e){ toast("Ce texte n'est pas une sauvegarde valide."); return; }
-  if(!o||typeof o!=='object'||!o.levels){ toast("Ce texte n'est pas une sauvegarde Cap Permis."); return; }
+  if(!o||typeof o!=='object'||!o.levels){ toast("Ce texte n'est pas une sauvegarde Cap Permis B."); return; }
   S=normalize(o); persist(); render(); toast('Sauvegarde restaurée.');
 }
 
