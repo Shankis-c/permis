@@ -14,6 +14,7 @@ Site : https://cap-permisb.fr
 - **Évolution** : courbe de progression et journal de conduite.
 - **Jour J** : préparation de la veille et du matin, respiration guidée, exercices de confiance.
 - **Mode d'emploi**, **mentions légales** et **rappel de sauvegarde**.
+- **Contact** : e-mail de l'auteur et lien vers le groupe Facebook « cap-permisb.fr - Réussir Examen Permis B ».
 
 ## Confidentialité
 
@@ -27,6 +28,11 @@ dans le navigateur de l'utilisateur (`localStorage`). Une sauvegarde manuelle es
 | `index.html` | Le site (HTML, CSS et JavaScript dans un seul fichier) |
 | `mentions-legales.html` | Le texte des mentions légales, chargé par `index.html` |
 | `CNAME` | Nom de domaine personnalisé (créé par GitHub Pages) |
+| `icon.svg`, `favicon.ico`, `apple-touch-icon.png`, `icon-192.png`, `icon-512.png` | Icônes du site |
+| `og-image.png` | Image affichée quand on partage le lien |
+| `site.webmanifest` | Nom et icônes pour l'installation sur mobile |
+| `sitemap.xml` | Liste des pages, pour Google Search Console |
+| `robots.txt` | Autorise l'indexation et indique le plan du site |
 | `README.md` | Ce fichier |
 | `.gitignore` | Fichiers à ne pas publier |
 
